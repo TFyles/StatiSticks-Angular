@@ -1,0 +1,113 @@
+header{
+	height: 65px;
+}
+a{
+	text-decoration: none;
+}
+#simple-menu{
+	display: none;
+	position: absolute;
+	top: 5px;
+	left: 10px;
+	font-size: 40px;
+	color: #FDFDF0;
+}
+#title{
+	position: absolute;
+	top: 30px;
+	left: 30%;
+	font-size: 20px;
+	color: #FDFDF0;
+	font-family: Verdana, Geneva, sans-serif;
+	font-weight: normal;
+}
+#profile{
+	display: none;
+}
+#stats{
+	display: none;
+}
+#graph{
+	display: none;
+}
+#about{
+	display: none;
+}
+#example{
+	display: none;
+}
+#profileGraphView{
+	display: none;
+}
+#logInForm{
+	display: none;
+}
+#signUpForm{
+	display: none;
+}
+#lineGraph{
+	display: none;
+}
+#pieChart{
+	display: none;
+}
+#barChart{
+	display: none;
+}
+#scatterChart{
+	display: none;
+}
+#offline{
+	display: none;
+}
+#homeButtons{
+	position: absolute;
+	top: 450px;
+	left: 20%;
+}
+.snazzyButton {
+  -webkit-border-radius: 23;
+  -moz-border-radius: 23;
+  border-radius: 23px;
+  border-color: #FDFDF0;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 18px;
+  background: #69D2E7;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+#exampleChart{
+	width:320px;
+	height:180px;
+	padding-bottom: 20px;
+}
+#phonegapcamera{
+	display: none;
+}
+#fileupload{
+	display: none;
+}
+#saveButton{
+	display: none;
+}
+#graphList{
+	display: inline;
+}
+#graphTypeList{
+	display: inline;
+}
+#pointsNumberList{
+	display: inline;
+}
+#image{
+	width: 250px;
+	height: 250px;
+	padding-left: 25%;
+	border-radius: 50%;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 4px;
+	border-color: #fff;
+
+}
