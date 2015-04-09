@@ -1,4 +1,8 @@
-angular.module('StatiSticksapp', ['StatiSticksappServices','ngRoute']).
+angular.module('StatiSticksapp', ['StatiSticksappServices','ngRoute'])
+.config(function ($compileProvider){
+    $compileProvider.urlSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
+})
+.
   config(['$routeProvider', function($routeProvider) {
   $routeProvider.
   	  when('/home', {templateUrl: 'views/home.html',   controller: UserCtrl}).
