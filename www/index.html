@@ -7,64 +7,315 @@
     <meta name="msapplication-tap-highlight" content="no" />
     <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/js/materialize.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/index.css" />
     <link rel="stylesheet" type="text/css" href="css/styles.css" />
-    <link rel="stylesheet" type="text/css" href="css/jquery.sidr.light.css">
-    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="js/parse-1.3.4.min.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
-    <script type="text/javascript" src="js/jquery.sidr.min.js"></script>
     <link rel="stylesheet" href="css/contour.min.css">
     <script src="http://d3js.org/d3.v3.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js"></script>
     <script src="js/contour.js"></script>
     <script type="text/javascript" src="js/GraphFunction.js"></script>
-    <script type="text/javascript" src="js/stats.js"></script>
+    <!-- <script type="text/javascript" src="js/stats.js"></script> -->
     <!-- <script type="text/javascript" src="js/camera.js"></script> -->
 
-    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
 
 
 
     <title>StatSticks</title>
 </head>
 
-<body>
+<body ng-controller="MainCtrl">
 
     <header class="light-blue lighten-2">
-        <a id="simple-menu" href="#sidr"> &#9776; </a>
-        <div id="sidr">
-            <ul>
-                <li>
-                    <a href="#" title="" id="profileNav"> Profile </a>
-                </li>
-                <li>
-                    <a href="#" title="" id="statNav">Stats</a>
-                </li>
-                <li>
-                    <a href="#" title="" id="graphNav">Graph</a>
-                </li>
-                <li>
-                    <a href="#" title="" id="aboutNav">About</a>
-                </li>
-                <li>
-                    <a href="" title="" id="logOut">Log Out</a>
-                </li>
-            </ul>
-        </div>
-        <script>
-            $(document).ready(function() {
-                $('#simple-menu').sidr();
-            });
-        </script>
+        <nav class="light-blue">
+          <ul id="slide-out" class="side-nav">
+            <div id="welcome">
+                <h5>Welcome <span>Steve</span> </h5>
+            </div>
+            <div id="main-navigation">
+            <li id="profileNav"> <a>Profile</a></li>
+            <li id="statNav"><a>Stats</a></li>
+            <li id="graphNav"><a>Graph</a></li>
+            <li id="aboutNav"><a>About</a></li>
+            <hr/>
+            <li><a ng-click="logOut()" id="navbarLogOut">Log Out</li></a>
+            </div>
+          </ul>
+          <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="mdi-navigation-menu"></i></a>
+          <div class="center-align" id="page-title"></div>
+        </nav>
     </header>
 
-    <div ng-view></div>
+    <div class="page" id="home" data-role="page" data-page="home">
+        <div id="homeButtons">
+            <div class="row">
+                <div class="center-text col s12">
+                    <button data-target="modal1" class=" btn modal-trigger waves-effect waves-light btn light-blue lighten-2 "> Log In </button>
+                    <button data-target="modal2" class=" btn modal-trigger waves-effect waves-light btn light-blue lighten-2 "> Sign Up </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="center-text col s12">
+                    <button id="offlineButton" class="waves-effect waves-light btn light-blue lighten-2">Offline Mode</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+            <div class="row">
+                <div class="input-field col s12" align="center">
+                    <h5>Login</h5>
+                </div>
+            </div>
+                <form id="logInForm">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <label for="loginName">Username:</label>
+                            <br>
+                            <input type="text" name="loginName" ng-model="loginName" value="" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <label for="loginPass">Password:</label>
+                            <br>
+                            <input type="password" name="loginPass" id="loginPass" ng-model="loginPass" value="" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+                <div class="center-text col s12">
+                    <div class="modal-buttons" align="center">
+                        <a href="" id="logInSend" class="modal-action modal-close waves-effect waves-light btn light-blue lighten-2 left-padding" ng-click="login()">Login</a>
+                        <a href="" class="modal-action modal-close waves-effect waves-light btn light-blue lighten-2 left-padding">Close</a>
+                    </div>
+                </div>
+        </div>
+
+        <div id="modal2" class="modal">
+            <div class="modal-content">
+            <div class="row">
+                <div class="input-field col s12" align="center">
+                    <h5>Login</h5>
+                </div>
+            </div>
+                <form id="signUpForm">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <label for="signUpName">Username:</label>
+                            <input type="text" name="signUpName" id="signUpName" ng-model="signUpName" value="" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <label for="signUpPass">Password:</label>
+                            <input type="password" name="signUpPass" id="signUpPass" ng-model="signUpPass" value="" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <label for="signUpPass">Email:</label>
+                            <input type="text" name="email" id="email" value=""  ng-model="signUpEmail" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+                <div class="center-text col s12">
+                    <div class="modal-buttons" align="center">
+                        <a href="" id="signUpSend" class="modal-action modal-close left-padding waves-effect waves-light btn light-blue lighten-2" ng-click="signUp()">Sign Up</a>
+                        <a href="" class="modal-action modal-close left-padding waves-light btn light-blue lighten-2 ">Close</a>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    <div class="page" id="profile" data-role="page">
+        <div class="row">
+            <div class="center-text col s12">  
+                <p id="editButton">Edit</p>
+                <br>
+                <p id="saveButton">Save</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="center-text col s12">
+                <div id="profilePic" align='center'></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="center-text col s12">
+                <h5 id="UsersName" align='center'> {{userDetails.get('username')}}</h5>
+            </div>
+        </div>
+        <form id="fileupload" name="fileupload" enctype="multipart/form-data" method="post">
+            <h5>Update Profile Picture</h5>
+            <fieldset>
+                <label> Upload from Files:</label>
+                <br>
+                <input type="file" name="fileselect" id="fileselect" ng-bind="profilePic">
+                <br>
+                <input ng-click="uploadProfilePic()" type="button" value="Upload to Parse" />
+            </fieldset>
+        </form>
+        <div class="row">
+            <div class="center-text col s12">
+                <h2 id="usernameDisplay"></h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="center-text col s12">
+                <form>
+                    <select id="graphList">
+                        <option>Option1</option>
+                    </select>
+                    <div id="viewGraphButton">View Graph</div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="center-text col s12">
+                <ul class="collapsible" data-collapsible="accordion">
+                    <li>
+                        <div class="collapsible-header"><i class="mdi-image-filter-drama"></i>Stats</div>
+                        <div class="collapsible-body">
+                            <p> Games: <span>{{userStats.get('Games')}}</span></p>
+                            <p> Minutes: <span>{{userStats.get('Minutes')}}</span></p>
+                            <p> Goals: <span>{{userStats.get('Goals')}}</span></p>
+                            <p> Assists: <span>{{userStats.get('Assists')}}</span></p>
+                            <p> Passes: <span>{{userStats.get('Passes')}}</span></p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="page" id="profileGraphView" data-role="page">
+        <div id="ProfileChart"></div>
+    </div>
+    <div class="page" id="stats" data-role="page">
+        <p>Stats</p>
+        <form name="statsAdd" id="statsAdd" method="get">
+            <label for="games">Games:</label>
+            <input type="number" name="games" id="games" ng-model="statGames" value="">
+            <BR>
+            <label for="goals">Goals:</label>
+            <input type="number" name="goals" id="goals" ng-model="statGoals" value="">
+            <BR>
+            <label for="assists"> Assists:</label>
+            <input type="number" name="assists" id="assists" ng-model="statAssists" value="">
+            <BR>
+            <label for="minutes">Minutes:</label>
+            <input type="number" name="minutes" id="minutes" ng-model="statMinutes" value="">
+            <BR>
+            <label for="minutes">Passes:</label>
+            <input type="number" name="passes" id="passes" ng-model="statPasses" value="">
+            <BR>
+            <div id="submitStats" class="waves-effect waves-light btn light-blue lighten-2" ng-click="addStats()"> Submit</div>
+            <input type="reset" class="waves-effect waves-light btn light-blue lighten-2">
+        </form>
+    </div>
+    <!---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -------------------------------------->
+
+    <div class="page" id="graph" data-role="page">
+        <ul class="collection">
+            <li class="collection-item avatar">
+              <i class="mdi-editor-insert-chart circle yellow"></i>
+              <p class="padding-top">Line Chart</p>
+              <a href="#!" class="secondary-content"><i class="mdi-action-grade"></i></a>
+            </li>
+            <li class="collection-item avatar">
+              <i class="mdi-file-folder circle light-blue"></i>
+              <p class="padding-top">Horizontal Bar Chart</p>
+              <a href="#!" class="secondary-content"><i class="mdi-action-grade"></i></a>
+            </li>
+            <li class="collection-item avatar">
+              <i class="mdi-action-assessment circle green"></i>
+                <p class="padding-top">Column Chart</p>
+              <a href="#!" class="secondary-content"><i class="mdi-action-grade"></i></a>
+            </li>
+            <li class="collection-item avatar">
+              <i class="mdi-av-play-arrow circle red"></i>
+              <p class="padding-top">Pie Chart</p>
+              <a href="#!" class="secondary-content"><i class="mdi-action-grade"></i></a>
+            </li>
+        </ul>  
+    </div>
+
+    <!---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -------------------------------------->
+    <div class="page" id="lineGraph" data-role="page">
+        <div id="Chart"></div>
+        <form id="lineGraphForm">Create a Line Graph
+            <BR>
+            <label for="name1"> Graph Name: </label>
+            <input type="text" id="name1" name="name1"><br>
+            <label for="XAxisTitle"> X Axis Title: </label>
+            <input type="text" id="xAxisTitle" name="xAxisTitle"><br>
+        </form>
+        <br>
+        <div id="createGraph" class="waves-effect waves-light btn light-blue lighten-2">Create Graph</div>
+        <br>
+        <!-- The is a ridiculous bug , this crashes if its a button or type submit for no obvious reason -->
+        <div id="saveData" class="waves-effect waves-light btn light-blue lighten-2">Save Graph</div>
+        <br>
+        <a href="#example" class="waves-effect waves-light btn light-blue lighten-2" id="exampleButton">View an example</a>
+    </div>
+    <!------------------------------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+    <div class="page" id="pieChart" data-role="page">
+    <div id="pieChart"></div><br>
+        <form>Create a PieChart
+            <BR>
+            <label for="Piename"> Graph Name: </label>
+            <input type="text" id="Piename" name="name1"><br>
+            <div id="createPieChart" class="waves-effect waves-light btn light-blue lighten-2">Create Chart</div>
+        <br>
+        <!-- The is a ridiculous bug , this crashes if its a button or type submit for no obvious reason -->
+        <div id="saveData" class="waves-effect waves-light btn light-blue lighten-2">Save Chart</div>
+        </form>
+    </div>
+    <!------------------------------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+    <div class="page" id="barChart" data-role="page">
+        <div id="barChart"></div><br>
+        <form>Create a BarChart
+            <BR>
+            <label for="Barname"> Graph Name: </label>
+            <input type="text" id="Barname" name="name1"><br>
+            <div id="createBarChart" class="waves-effect waves-light btn light-blue lighten-2">Create Chart</div>
+        <br>
+        <!-- The is a ridiculous bug , this crashes if its a button or type submit for no obvious reason -->
+        <div id="saveData" class="waves-effect waves-light btn light-blue lighten-2">Save Chart</div>
+        </form>
+    </div>
+    <!------------------------------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+    <div class="page" id="scatterChart" data-role="page">
+        <form>Create a ScatterChart
+            
+        </form>
+    </div>
+    <!------------------------------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+    <div class="page" id="example" data-role="page">
+        <div id="exampleChart"></div>
+        <button class="waves-effect waves-light btn light-blue lighten-2" onclick="randomGraph()">Random Chart</button>
+        <button class="waves-effect waves-light btn light-blue lighten-2" onclick="updateRandomGraph">Update</button>
+        <button class="waves-effect waves-light btn light-blue lighten-2" id="closeExample" onclick="closeGraph()">Close</button>
+    </div>
+    <div class="page" id="about" data-role="page">
+    </div>
+
+    <div class="page" id="offline" data-role="page">
+        <button id="offlineBack" class="waves-effect waves-light btn light-blue lighten-2">Back</button>
+    </div>
+
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-resource.js"></script>
     <script type="text/javascript" src="js/ang/app.js"></script>
-    <script type="text/javascript" src="js/ang/controllers.js"></script>
     <script type="text/javascript" src="js/ang/services.js"></script>
 </body>
 

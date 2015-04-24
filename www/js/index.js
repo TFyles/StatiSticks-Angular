@@ -1,31 +1,37 @@
 Parse.initialize("imbkzuNYr6DWtmvB9dRU1nHdlWz0D3ET0Rj6MSKo", "ILwfj37tvWIiIdHNaPDEv0eEGdgoKuRMwHfa2vZp");
 $(document).ready(function() {
 
+    $('.button-collapse').sideNav({menuWidth: 240, activationWidth: 100});
+    $('.modal-trigger').leanModal();
+     $('.collapsible').collapsible({
+      accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+    });
+
     $('#profileNav').click(function() {
         $('.page').css('display', 'none');
         $('#profile').css('display', 'inline');
-        $.sidr('close', 'sidr');
+        $('.button-collapse').sideNav('hide');
     });
     $('#profileButton').click(function() {
         $('#profile').css('display', 'inline');
         $('#home').css('display', 'none');
-        $.sidr('close', 'sidr');
+        $('.button-collapse').sideNav('hide');
     });
     $('#statNav').click(function() {
         $('.page').css('display', 'none');
         $('#stats').css('display', 'inline');
-        $.sidr('close', 'sidr');
+        $('.button-collapse').sideNav('hide');
     });
     $('#graphNav').click(function() {
         $('.page').css('display', 'none');
         $('#graph').css('display', 'inline');
-        $.sidr('close', 'sidr');
+        $('.button-collapse').sideNav('hide');
 
     });
     $('#aboutNav').click(function() {
         $('.page').css('display', 'none');
         $('#about').css('display', 'inline');
-        $.sidr('close', 'sidr');
+        $('.button-collapse').sideNav('hide');
     });
     $('#logInButton').click(function() {
         $('#logInForm').css('display', 'inline');
@@ -87,24 +93,8 @@ $(document).ready(function() {
     $('#createGraphOffline').click(function() {
         makeGraph();
     });
-    $('#graphUpdate').click(function() {
-        updateGraphList();
-    })
-    $('#signUpSend').click(function() {
-        signUp();
-
-    });
-    $('#logInSend').click(function() {
-        logIn();
-    })
     $('#saveData').click(function() {
         addGraphData();
-    });
-    $('#submitStats').click(function() {
-        addStats();
-    });
-    $('#logOut').click(function() {
-        logOut();
     });
     $("#viewGraphButton").click(function() {
         profileGraphView();
@@ -113,7 +103,7 @@ $(document).ready(function() {
     })
 
 
-    function updateGraphList() {
+    /*function updateGraphList() {
         var user = Parse.User.current();
         $('#graphList').empty();
         var GraphData = Parse.Object.extend("GraphData");
@@ -159,9 +149,9 @@ $(document).ready(function() {
         function error(error) {
             alert("Error: " + error.code + " " + error.message);
         }
-    }
+    }*/
 
-    function signUp() {
+/*    function signUp() {
         var username = $('#signUpName').val();
         var password = $('#signUpPass').val();
         var email = $('#email').val();
@@ -210,25 +200,11 @@ $(document).ready(function() {
         $('#home').css('display', 'inline');
         $.sidr('close', 'sidr');
     }
-
-    function facebookLogin() {
-        Parse.FacebookUtils.logIn(null, {
-            success: function(user) {
-                if (!user.existed()) {
-                    alert("User signed up and logged in through Facebook!");
-                } else {
-                    alert("User logged in through Facebook!");
-                }
-            },
-            error: function(user, error) {
-                alert("User cancelled the Facebook login or did not fully authorize.");
-            }
-        });
-    }
+*/
 
 });
 
-function getUsername() {
+/*function getUsername() {
     var user = Parse.User.current();
     var Profile = Parse.Object.extend("User");
     var query = new Parse.Query(Profile);
@@ -249,3 +225,4 @@ function getUsername() {
         alert("Error: " + error.code + " " + error.message);
     }
 }
+*/
