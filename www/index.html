@@ -33,6 +33,7 @@
                     <li id="profileNav"> <a>Profile</a></li>
                     <li id="statNav"><a>Stats</a></li>
                     <li id="graphNav"><a>Graph</a></li>
+                    <li id="utilNav"><a>Utilities</a></li>
                     <li id="aboutNav"><a>About</a></li>
                     <hr/>
                     <li><a ng-click="logOut()" id="navbarLogOut">Log Out</li></a>
@@ -42,7 +43,6 @@
             <div class="center-align" id="page-title"></div>
         </nav>
     </header>
-
     <div class="page" id="home" data-role="page" data-page="home">
         <div id="backgroundImage">
             <img src="img/hockey.png" alt="Background Image">
@@ -127,8 +127,6 @@
             </div>
         </div>
     </div>
-
-
     <div class="page" id="profile" data-role="page">
         <div class="row">
             <div class="center-text col s12">
@@ -192,21 +190,22 @@
         </div>
         <div id="modal6" class="modal">
             <div class="modal-content">
-              <div id="profileGraph"></div>
+                <div id="profileGraph"></div>
             </div>
             <div class="modal-footer">
-              <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
             </div>
         </div>
     </div>
-
-
     <div class="page" id="stats" data-role="page">
         <div class="row">
-            <div class="col s12" id="initStats"><p> It appears that that this is your first time visiting the stats section, please fill in your current stats using the bytton below</p></div>
-            <div class="col s12" id="accStats"><p> How did your game go? Press the button at the bottom of the page to add your latest stats</p></div>
+            <div class="col s12" id="initStats">
+                <p> It appears that that this is your first time visiting the stats section, please fill in your current stats using the bytton below</p>
+            </div>
+            <div class="col s12" id="accStats">
+                <p> How did your game go? Press the button at the bottom of the page to add your latest stats</p>
+            </div>
         </div>
-
         <div class="row" id="statsRow">
             <div class="center-text col s12">
                 <ul class="collapsible" data-collapsible="accordion">
@@ -223,7 +222,6 @@
                 </ul>
             </div>
         </div>
-
         <div class="row" id="advancedStatsRow">
             <div class="center-text col s12">
                 <ul class="collapsible" data-collapsible="accordion">
@@ -240,61 +238,57 @@
                 </ul>
             </div>
         </div>
-
         <div class="row">
             <div class="col s12" align="center">
-                <button  data-target="modal4" id="initStats" class=" btn modal-trigger waves-effect waves-light btn light-blue lighten-2 "> Add Stats </button>
+                <button data-target="modal4" id="initStats" class=" btn modal-trigger waves-effect waves-light btn light-blue lighten-2 "> Add Stats </button>
                 <button data-target="modal5" id="accStats" class=" btn modal-trigger waves-effect waves-light btn light-blue lighten-2 "> Add Acc Stats </button>
             </div>
         </div>
-
-
         <div id="modal4" class="modal">
             <div class="modal-content">
-              <div class="row">
-                <div class="col s12">Add Stats so far</div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <label for="games">Games:</label>
-                    <input type="number" name="games" id="games" ng-model="statGames" value="">
+                <div class="row">
+                    <div class="col s12">Add Stats so far</div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <label for="goals">Goals:</label>
-                    <input type="number" name="goals" id="goals" ng-model="statGoals" value="">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <label for="games">Games:</label>
+                        <input type="number" name="games" id="games" ng-model="statGames" value="">
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <label for="assists"> Assists:</label>
-                    <input type="number" name="assists" id="assists" ng-model="statAssists" value="">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <label for="goals">Goals:</label>
+                        <input type="number" name="goals" id="goals" ng-model="statGoals" value="">
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <label for="minutes">Minutes:</label>
-                    <input type="number" name="minutes" id="minutes" ng-model="statMinutes" value="">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <label for="assists"> Assists:</label>
+                        <input type="number" name="assists" id="assists" ng-model="statAssists" value="">
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <label for="minutes">Passes:</label>
-                    <input type="number" name="passes" id="passes" ng-model="statPasses" value="">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <label for="minutes">Minutes:</label>
+                        <input type="number" name="minutes" id="minutes" ng-model="statMinutes" value="">
+                    </div>
                 </div>
-            </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <label for="minutes">Passes:</label>
+                        <input type="number" name="passes" id="passes" ng-model="statPasses" value="">
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
-              <a href="#!" ng-click="addStats()" class="waves-effect waves-green btn-flat">Submit Stats</a>
-              <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+                <a href="#!" ng-click="addStats()" class="waves-effect waves-green btn-flat">Submit Stats</a>
+                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
             </div>
-          </div>
-
+        </div>
         <div id="modal5" class="modal">
             <div class="modal-content">
                 <div class="row">
-                <div class="col s12">Add Stats since latest update</div>
+                    <div class="col s12">Add Stats since latest update</div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
@@ -433,17 +427,16 @@
         </div>
         <div id="modal3" class="modal">
             <div class="modal-content">
-              <div id="lineGraph"></div>
+                <div id="lineGraph"></div>
             </div>
             <div class="modal-footer">
-              <a href="#!" ng-click="saveLineGraph()" class="waves-effect waves-green btn-flat">Save</a>
-              <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+                <a href="#!" ng-click="saveLineGraph()" class="waves-effect waves-green btn-flat">Save</a>
+                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
             </div>
         </div>
-        
     </div>
     <!------------------------------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-    <div class="page" id="pieChart" data-role="page">
+    <!--  <div class="page" id="pieChart" data-role="page">
         <form id=" pieForm">
             <div class="row">
                 <div class="input-field col s12">
@@ -517,7 +510,7 @@
           </div>
     </div>
     <!------------------------------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-    <div class="page" id="barChart" data-role="page">
+    <!-- <div class="page" id="barChart" data-role="page">
         <div id="barChart"></div>
         <br>
         <form>Create a BarChart
@@ -602,16 +595,102 @@
         </div>
     </div>
     <!------------------------------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-    <div class="page" id="columnChart" data-role="page">
+    <!-- <div class="page" id="columnChart" data-role="page">
         <form>Create a ScatterChart
         </form>
     </div>
     <!------------------------------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-    <div class="page" id="example" data-role="page">
-        <div id="exampleChart"></div>
-        <button class="waves-effect waves-light btn light-blue lighten-2" onclick="randomGraph()">Random Chart</button>
-        <button class="waves-effect waves-light btn light-blue lighten-2" onclick="updateRandomGraph">Update</button>
-        <button class="waves-effect waves-light btn light-blue lighten-2" id="closeExample" onclick="closeGraph()">Close</button>
+    <div class="page" id="utilities" data-role="page">
+        <div class="row">
+            <div class="col s12">
+                <p>Utilities</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <ul class="collection">
+                    <li class="collection-item avatar" id="toMatchReports">
+                        <i class="mdi-editor-insert-chart circle yellow"></i>
+                        <p class="padding-top">Read Match Reports</p>
+                        <a href="#!" class="secondary-content"><i class="mdi-action-grade"></i></a>
+                    </li>
+                    <li class="collection-item avatar" id="toWriteReports">
+                        <i class="mdi-file-folder circle light-blue"></i>
+                        <p class="padding-top">Report on a match</p>
+                        <a href="#!" class="secondary-content"><i class="mdi-action-grade"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="page" id="matchReports" data-role="page">
+        <div class="row">
+            <div class="center-text col s12">
+                <ul class="collapsible" data-collapsible="accordion" ng-repeat="report in matchReports">
+                    <li>
+                        <div class="collapsible-header"><i class="mdi-image-filter-drama"></i>{{report.get('homeTeam')}} v {{report.get('awayTeam')}}</div>
+                        <div class="collapsible-body">
+                            <p> Date: <span>{{report.get('Date')}}</span></p>
+                            <p> Report: <span>{{report.get('Report')}}</span></p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="page" id="writeReports" data-role="page">
+        <div class="row">
+            <div class="col s12">Enter match details below</div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <label for="date">Date</label>
+                <input type="date" class="datepicker" name="date" id="date" ng-model="gameDate" value="">
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <label for="home">Home Team:</label>
+                <input type="text" name="home" id="home" ng-model="gameHome" value="">
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <label for="away"> Away Team:</label>
+                <input type="text" name="away" id="away" ng-model="gameAway" value="">
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <label for="homeGoals">Home Goals:</label>
+                <input type="number" name="homeGoals" id="homeGoals" ng-model="gameHomeGoals" value="">
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <label for="awayGoals">Away Goals:</label>
+                <input type="number" name="awayGoals" id="awayGoals" ng-model="gameAwayGoals" value="">
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <p>Enter report as you would like it to be displayed</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <label for="report">Match Report:</label>
+                <textarea id="report" class="materialize-textarea" ng-model="gameReport"></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12" align="center">
+                <a href="#!" ng-click="saveReport()" class="waves-effect waves-green btn-flat">Save</a>
+                <a href="#!" class="waves-effect waves-green btn-flat">Close</a>
+            </div>
+        </div>
     </div>
     <div class="page" id="about" data-role="page">
     </div>

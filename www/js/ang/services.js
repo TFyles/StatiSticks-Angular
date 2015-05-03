@@ -474,6 +474,51 @@ angular.module('StatiSticksappServices', ['ngResource'])
 
             },
 
+            saveReport: function saveReport(date, home, away, homegoals, awaygoals, report){
+                var homegoals = Number(homegoals);
+                var awaygoals = Number(awaygoals);
+                var home = String(home);
+                console.log(date);
+                console.log(typeof(date));
+                console.log(home);
+                console.log(away);
+
+                var Reports = Parse.Object.extend("Reports");
+                var reportsend = new Reports();
+
+                reportsend.set("Date", date);
+                reportsend.set("homeTeam", home);
+                reportsend.set("awayTeam", away);
+                reportsend.set("homeGoals", homegoals);
+                reportsend.set("awayGoals", awaygoals);
+                reportsend.set("report", report);
+
+        
+
+                reportsend.save(null, {
+                    success: function(report) {
+                        Materialize.toast("Match Report saved", 4000);
+                    },
+                    error: function(report, error) {
+                        Materialize.toast('Failed to save ' + error.message, 1000);
+                    }
+                }) 
+
+            },
+
+            getMatchReports : function getMatchReports(callback){
+                var report = Parse.Object.extend("Reports");
+                var query = new Parse.Query(report);
+                query.find({
+                        success: function(results){
+                            callback(results);
+                        },
+                        error: function(results, error){
+                            console.log("Failed to load");
+                        }
+                    });
+            },
+
             uploadProfilePic : function uploadProfilePic(callback) {
 
                     // This function is called when the user clicks on Upload to Parse. It will create the REST API request to upload this image to Parse.

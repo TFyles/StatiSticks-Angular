@@ -25,6 +25,11 @@ function MainCtrl($scope, $timeout, $location, ParseService){
         $scope.$apply(function(){
           $scope.userStats = results;
         })
+      ParseService.getMatchReports(function(results){
+      $scope.$apply(function(){
+        $scope.matchReports = results;
+        })
+      });
         $timeout(function(){
           ParseService.getAdvancedStats($scope.userStats, function(results){
             $scope.$apply(function(){
@@ -172,6 +177,18 @@ function MainCtrl($scope, $timeout, $location, ParseService){
     }, 600);
   }
 
+  $scope.saveReport = function(){
+    ParseService.saveReport($scope.gameDate, $scope.gameHome, $scope.gameAway, $scope.gameHomeGoals, $scope.gameAwayGoals, $scope.gameReport);
+  }
+
+  $scope.getMatchReports = function(){
+    ParseService.getMatchReports(function(results){
+      $scope.$apply(function(){
+        $scope.matchReports = results;
+      })
+    });
+  }  
+
   $scope.getAdvancedStats = function(){
     ParseService.getAdvancedStats($scope.userStats, function(results){
         $scope.$apply(function(){
@@ -182,12 +199,14 @@ function MainCtrl($scope, $timeout, $location, ParseService){
     });
   }
 
+
   $scope.getUserDetails = function(){
      ParseService.getUserDetails();
   }
 
 
     $scope.userDetails;
+    $scope.matchReports;
     $scope.userStats;
     $scope.userAdvancedStats;
     $scope.init();

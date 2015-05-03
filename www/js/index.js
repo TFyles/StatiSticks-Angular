@@ -3,9 +3,15 @@ $(document).ready(function() {
 
     $('.button-collapse').sideNav({menuWidth: 240, activationWidth: 100});
     $('.modal-trigger').leanModal();
+    
      $('.collapsible').collapsible({
       accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
     });
+
+     $('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15 // Creates a dropdown of 15 years to control year
+  });
 
     $('#profileNav').click(function() {
         $('.page').css('display', 'none');
@@ -20,6 +26,11 @@ $(document).ready(function() {
     $('#statNav').click(function() {
         $('.page').css('display', 'none');
         $('#stats').css('display', 'inline');
+        $('.button-collapse').sideNav('hide');
+    });
+    $('#utilNav').click(function() {
+        $('.page').css('display', 'none');
+        $('#utilities').css('display', 'inline');
         $('.button-collapse').sideNav('hide');
     });
     $('#graphNav').click(function() {
@@ -37,17 +48,13 @@ $(document).ready(function() {
         $('.page').css('display', 'none');
         $('#lineChart').css('display', 'inline');
     });
-    $('#toBarChart').click(function(){
+    $('#toMatchReports').click(function(){
         $('.page').css('display', 'none');
-        $('#barChart').css('display', 'inline');
+        $('#matchReports').css('display', 'inline'); 
     });
-    $('#toColumnChart').click(function(){
+    $('#toWriteReports').click(function(){
         $('.page').css('display', 'none');
-        $('#columnChart').css('display', 'inline');
-    });
-    $('#toPieChart').click(function(){
-        $('.page').css('display', 'none');
-        $('#pieChart').css('display', 'inline');
+        $('#writeReports').css('display', 'inline'); 
     });
     $('#closeLogIn').click(function() {
         $('#logInForm').css('display', 'none');

@@ -150,3 +150,12 @@ p{
 #advancedStatsRow{
 	display: none;
 }
+#utilities{
+	display: none;
+}
+#matchReports{
+	display: none;
+}
+#writeReports{
+	display: none;
+}
