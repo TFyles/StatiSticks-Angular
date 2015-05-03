@@ -31,7 +31,7 @@ a{
 #profileGraphView{
 	display: none;
 }
-#lineGraph{
+#lineChart{
 	display: none;
 }
 #pieChart{
@@ -40,7 +40,7 @@ a{
 #barChart{
 	display: none;
 }
-#scatterChart{
+#columnChart{
 	display: none;
 }
 #offline{
@@ -128,4 +128,25 @@ nav ul a{
 }
 p{
 	text-transform: none;
+}
+#backgroundImage{
+    position: fixed; 
+    width: 100%; 
+    height: 100%; 
+}
+
+
+#backgroundImage img{
+    margin: auto; 
+    min-width: 34%;
+    min-height: 34%;
+}
+#accStats{
+	display: none;
+}
+#statsRow{
+	display: none;
+}
+#advancedStatsRow{
+	display: none;
 }

@@ -11,7 +11,6 @@ function MainCtrl($scope, $timeout, $location, ParseService){
   $scope.login = function() {
     ParseService.login($scope.loginName, $scope.loginPass, function(user) { 
     $scope.updateGraphList();
-    $scope.updateStatsList();
     $scope.addStatsChecker();
     $scope.displayProfilePicture();
     $timeout(function() {
@@ -26,6 +25,14 @@ function MainCtrl($scope, $timeout, $location, ParseService){
         $scope.$apply(function(){
           $scope.userStats = results;
         })
+        $timeout(function(){
+          ParseService.getAdvancedStats($scope.userStats, function(results){
+            $scope.$apply(function(){
+              $scope.userAdvancedStats = results;
+              console.log(results);
+            })
+          });
+        }, 500);
       })
     }, 400);
     
@@ -46,21 +53,66 @@ function MainCtrl($scope, $timeout, $location, ParseService){
     Materialize.toast("Logging out", 4000);
   }
 
-  $scope.updateGraphList = function(){
-    ParseService.updateGraphList();
+  $scope.viewgraph = function(){
+    ParseService.viewgraph($scope.profileGraph, function(graph){
+      $scope.$apply(function(){
+        $scope.profileGraph = graph;
+        console.log($scope.profileGraph);
+      })
+      $timeout(function(){
+        ParseService.showGraph($scope.profileGraph)
+      }, 500);
+    });
   }
 
-  $scope.updateStatsList = function(){
-    ParseService.updateStatsList();
+  $scope.updateGraphList = function(){
+    ParseService.updateGraphList( function(results){
+      $scope.$apply(function(){
+        $scope.userGraphs = results;
+      })
+    });
+
   }
 
   $scope.addStatsChecker = function(){
     ParseService.addStatsChecker();
   }
 
+  $scope.updateStatsList = function(){
+    ParseService.updateStatsList();
+  }
+
   $scope.displayProfilePicture = function(){
     ParseService.displayProfilePicture();
   }
+
+  $scope.createBarChart = function(){
+    ParseService.createBarChart($scope.BarName, $scope.BarXLabel, $scope.BarYLabel, $scope.Bardp1, $scope.Bardp2, $scope.Bardp3, $scope.Bardp4, $scope.Bardp5, $scope.Bardp6);
+  }
+
+  $scope.FauxBuy = function(){
+    ParseService.FauxBuy();
+  }
+
+
+  $scope.createLineGraph = function(){
+    ParseService.createLineGraph($scope.graphName, $scope.graphXLabel, $scope.graphYLabel, $scope.dp1, $scope.dp2, $scope.dp3, $scope.dp4, $scope.dp5, $scope.dp6);
+  }
+
+  $scope.saveLineGraph = function(){
+    ParseService.saveLineGraph($scope.graphName, $scope.graphXLabel, $scope.graphYLabel, $scope.dp1, $scope.dp2, $scope.dp3, $scope.dp4, $scope.dp5, $scope.dp6);
+    $timeout(function(){
+      ParseService.updateGraphList( function(results){
+      $scope.$apply(function(){
+        $scope.userGraphs = results;
+      })
+    });
+  }, 500);
+  } 
+
+  $scope.createPieChart = function(){
+    ParseService.createPieChart($scope.pieName, $scope.Piedp1, $scope.Piedp2, $scope.Piedp3, $scope.Piedp4, $scope.Piedp5, $scope.Piedp6);
+  } 
 
   $scope.uploadProfilePic = function(){
     ParseService.uploadProfilePic(function(results){
@@ -84,6 +136,50 @@ function MainCtrl($scope, $timeout, $location, ParseService){
 
   $scope.addStats = function(){
     ParseService.addStats($scope.statGames, $scope.statGoals, $scope.statAssists, $scope.statMinutes, $scope.statPasses);
+    $timeout(function() {
+      ParseService.updateStatsList(function(results){
+        $scope.$apply(function(){
+          $scope.userStats = results;
+        })
+        $timeout(function(){
+          ParseService.getAdvancedStats($scope.userStats, function(results){
+            $scope.$apply(function(){
+              $scope.userAdvancedStats = results;
+              console.log(results);
+            })
+          });
+        }, 500);
+      })
+    }, 400);
+  }
+
+  $scope.addaccStats = function(){
+    ParseService.addaccStats($scope.stataccGames, $scope.stataccGoals, $scope.stataccAssists, $scope.stataccMinutes, $scope.stataccPasses);
+    $timeout(function() {
+      ParseService.updateStatsList(function(results){
+        $scope.$apply(function(){
+          $scope.userStats = results;
+        })
+        $timeout(function(){
+          ParseService.getAdvancedStats($scope.userStats, function(results){
+            $scope.$apply(function(){
+              $scope.userAdvancedStats = results;
+              console.log(results);
+            })
+          });
+        }, 500);
+      })
+    }, 600);
+  }
+
+  $scope.getAdvancedStats = function(){
+    ParseService.getAdvancedStats($scope.userStats, function(results){
+        $scope.$apply(function(){
+          $scope.userAdvancedStats = results;
+          console.log(results);
+        })
+
+    });
   }
 
   $scope.getUserDetails = function(){
@@ -93,7 +189,10 @@ function MainCtrl($scope, $timeout, $location, ParseService){
 
     $scope.userDetails;
     $scope.userStats;
+    $scope.userAdvancedStats;
     $scope.init();
     $scope.image;
+    $scope.userGraphs;
+    $scope.profileGraph;
 }
 MainCtrl.$inject = ['$scope', '$timeout', '$location', 'ParseService']

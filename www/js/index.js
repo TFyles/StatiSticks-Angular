@@ -33,9 +33,21 @@ $(document).ready(function() {
         $('#about').css('display', 'inline');
         $('.button-collapse').sideNav('hide');
     });
-    $('#logInButton').click(function() {
-        $('#logInForm').css('display', 'inline');
-        $('#homeButtons').css('display', 'none');
+    $('#toLineChart').click(function(){
+        $('.page').css('display', 'none');
+        $('#lineChart').css('display', 'inline');
+    });
+    $('#toBarChart').click(function(){
+        $('.page').css('display', 'none');
+        $('#barChart').css('display', 'inline');
+    });
+    $('#toColumnChart').click(function(){
+        $('.page').css('display', 'none');
+        $('#columnChart').css('display', 'inline');
+    });
+    $('#toPieChart').click(function(){
+        $('.page').css('display', 'none');
+        $('#pieChart').css('display', 'inline');
     });
     $('#closeLogIn').click(function() {
         $('#logInForm').css('display', 'none');
