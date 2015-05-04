@@ -179,6 +179,13 @@ function MainCtrl($scope, $timeout, $location, ParseService){
 
   $scope.saveReport = function(){
     ParseService.saveReport($scope.gameDate, $scope.gameHome, $scope.gameAway, $scope.gameHomeGoals, $scope.gameAwayGoals, $scope.gameReport);
+    $timeout(function(){
+      ParseService.getMatchReports(function(results){
+      $scope.$apply(function(){
+        $scope.matchReports = results;
+      })
+    });
+    }, 500);
   }
 
   $scope.getMatchReports = function(){
@@ -195,7 +202,6 @@ function MainCtrl($scope, $timeout, $location, ParseService){
           $scope.userAdvancedStats = results;
           console.log(results);
         })
-
     });
   }
 

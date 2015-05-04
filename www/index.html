@@ -13,12 +13,10 @@
     <link rel="stylesheet" type="text/css" href="css/index.css" />
     <link rel="stylesheet" type="text/css" href="css/styles.css" />
     <script type="text/javascript" src="js/parse-1.3.4.min.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
     <link rel="stylesheet" href="css/contour.min.css">
     <script src="http://d3js.org/d3.v3.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js"></script>
     <script src="js/contour.js"></script>
-    <script type="text/javascript" src="js/GraphFunction.js"></script>
     <title>StatSticks</title>
 </head>
 
@@ -625,20 +623,21 @@
     </div>
 
     <div class="page" id="matchReports" data-role="page">
-        <div class="row">
+
+        <div class="row" ng-repeat=" report in matchReports">
             <div class="center-text col s12">
-                <ul class="collapsible" data-collapsible="accordion" ng-repeat="report in matchReports">
-                    <li>
-                        <div class="collapsible-header"><i class="mdi-image-filter-drama"></i>{{report.get('homeTeam')}} v {{report.get('awayTeam')}}</div>
-                        <div class="collapsible-body">
-                            <p> Date: <span>{{report.get('Date')}}</span></p>
-                            <p> Report: <span>{{report.get('Report')}}</span></p>
-                        </div>
-                    </li>
-                </ul>
+                <div class="card-panel #fefefe">
+                    <h6> {{report.get('homeTeam')}} v {{report.get('awayTeam')}}</h5>
+                    <p>{{report.get('homeGoals')}} - {{report.get('awayGoals')}}</p>
+                    <p> Date: <span>{{report.get('Date')}}</span></p>
+                    <p> Report: <br><br> <span>{{report.get('report')}}</span></p>
+                </div>
             </div>
         </div>
+
     </div>
+
+
 
     <div class="page" id="writeReports" data-role="page">
         <div class="row">
@@ -702,6 +701,7 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-resource.js"></script>
     <script type="text/javascript" src="js/ang/app.js"></script>
     <script type="text/javascript" src="js/ang/services.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
 </body>
 
 </html>
