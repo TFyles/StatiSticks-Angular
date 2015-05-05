@@ -4,14 +4,27 @@ header{
 a{
 	text-decoration: none;
 }
+p{
+	font-family: alegreya_sansregular, 'Geneva', 'sans-serif';
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: arimoregular, 'Geneva', 'sans-serif';
+	text-transform: capitalize;
+}
 #title{
 	position: absolute;
 	top: 30px;
 	left: 30%;
 	font-size: 20px;
 	color: #FDFDF0;
-	font-family: Verdana, Geneva, sans-serif;
+	font-family: arimoregular, 'Geneva', 'sans-serif';
+	text-transform: capitalize;
 	font-weight: normal;
+}
+#page-title{
+	font-family: arimoregular, 'Geneva', 'sans-serif';
+	text-transform: capitalize;
 }
 #profile{
 	display: none;
@@ -133,13 +146,16 @@ p{
     position: fixed; 
     width: 100%; 
     height: 100%; 
+    background-color: #4fc3f7;
 }
 
-
+#page-title{
+    font-size: 2em;
+}
 #backgroundImage img{
     margin: auto; 
-    min-width: 34%;
-    min-height: 34%;
+    width: 44%;
+    height: 24%;
 }
 #accStats{
 	display: none;
@@ -158,4 +174,51 @@ p{
 }
 #writeReports{
 	display: none;
+}
+#statButtons{
+	padding-top: 80%;
+}
+.graphType{
+	height: 90%; 
+}
+#profileFirst{
+	padding-top: 10px;
+}
+.blue{
+	background-color: #4fc3f7;
+}
+#step1{
+	display: none;
+}
+#end{
+	display: none;
+}
+#exampleGraph{
+	width: 100px;
+}
+
+@font-face {
+    font-family: 'alegreya_sansregular';
+    src: url('font/alegreyasans-regular-webfont.eot');
+    src: url('font/alegreyasans-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('font/alegreyasans-regular-webfont.woff2') format('woff2'),
+         url('font/alegreyasans-regular-webfont.woff') format('woff'),
+         url('font/alegreyasans-regular-webfont.ttf') format('truetype'),
+         url('font/alegreyasans-regular-webfont.svg#alegreya_sansregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'arimoregular';
+    src: url('font/arimo-regular-webfont.eot');
+    src: url('font/arimo-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('font/arimo-regular-webfont.woff2') format('woff2'),
+         url('font/arimo-regular-webfont.woff') format('woff'),
+         url('font/arimo-regular-webfont.ttf') format('truetype'),
+         url('font/arimo-regular-webfont.svg#arimoregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
 }

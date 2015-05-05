@@ -32,6 +32,8 @@ angular.module('StatiSticksappServices', ['ngResource'])
                             $('#home').css('display', 'none');
                             $('#profile').css('display', 'inline');
                             $('header').css('display', 'inline');
+                            $('body').css('background-color', '#eceff1');
+                            $('#page-title').text("Profile");
 
                             
                         },
@@ -65,6 +67,7 @@ angular.module('StatiSticksappServices', ['ngResource'])
 
                 // Logout current user
                 logOut: function logOut(callback) {
+                    Parse.User.logOut();
                     console.log("Logging out");
                 },
 
@@ -120,7 +123,7 @@ angular.module('StatiSticksappServices', ['ngResource'])
 
                     var XAxisLabels = [];
                     var count = 1;
-                    for (var i = 0; i < data.length; i++){
+                    for (var i = 1; i < data.length; i++){
                         XAxisLabels.push(count);
                         count++;
                     }
@@ -260,33 +263,46 @@ angular.module('StatiSticksappServices', ['ngResource'])
                     }
                 },
 
-                createBarChart: function createBarChart(name, xlabel, ylabel, point1, point2, point3, point4, point5, point6){
+                FauxBuy: function FauxBuy(){
+                    alert("Transaction Failed");
+                },
 
-                    $('#barChart').empty();
+                makeExample: function makeExample(name, xlabel, ylabel, point1, point2, point3, point4, point5, point6){
+
+                    $('#exampleGraph').empty();
                     num1 = Number(point1);
                     num2 = Number(point2);
                     num3 = Number(point3);
                     num4 = Number(point4);
                     num5 = Number(point5);
                     num6 = Number(point6);
+
                     var data = [num1, num2, num3, num4, num5, num6];
 
-                    new Contour({
-                        el: '#barChart',
+                      for (i = 0; i < data.length; i++){
+                        if ((data[i] == NaN) || (data[i] == null)){
+                            data.splice([i],1);
+                        }
+                    }
+
+                    var XAxisLabels = [];
+                    var count = 1;
+                    for (var i = 1; i < data.length; i++){
+                        XAxisLabels.push(count);
+                        count++;
+                    }
+                        chart = new Contour({
+                        el: '#exampleGraph',
                         xAxis: { orient: 'bottom' },
+                        xAxis: { categories: XAxisLabels },
                         xAxis: { title: xlabel },
-                        yAxis: { title: ylabel, titlePadding: 40, max: 100}
+                        yAxis: { title: ylabel, titlePadding: 40, max: 100},
+
+                        chart: { animations : { enable: true } } 
                     })
-                      .cartesian()
-                      .horizontal()
-                      .bar(data)
-                      .render();
-
-                    
-                },
-
-                FauxBuy: function FauxBuy(){
-                    alert("Transaction Failed");
+                .cartesian()
+                .line(data)
+                .render();
                 },
 
                 createLineGraph: function createLineGraph(name, xlabel, ylabel, point1, point2, point3, point4, point5, point6){
@@ -298,9 +314,10 @@ angular.module('StatiSticksappServices', ['ngResource'])
                     num4 = Number(point4);
                     num5 = Number(point5);
                     num6 = Number(point6);
+
                     var data = [num1, num2, num3, num4, num5, num6];
 
-                    for (i = 0; i < data.length; i++){
+                      for (i = 0; i < data.length; i++){
                         if ((data[i] == NaN) || (data[i] == null)){
                             data.splice([i],1);
                         }
@@ -308,7 +325,7 @@ angular.module('StatiSticksappServices', ['ngResource'])
 
                     var XAxisLabels = [];
                     var count = 1;
-                    for (var i = 0; i < data.length; i++){
+                    for (var i = 1; i < data.length; i++){
                         XAxisLabels.push(count);
                         count++;
                     }
@@ -477,7 +494,6 @@ angular.module('StatiSticksappServices', ['ngResource'])
             saveReport: function saveReport(date, home, away, homegoals, awaygoals, report){
                 var homegoals = Number(homegoals);
                 var awaygoals = Number(awaygoals);
-                var home = String(home);
                 console.log(date);
                 console.log(typeof(date));
                 console.log(home);
@@ -559,6 +575,7 @@ angular.module('StatiSticksappServices', ['ngResource'])
                         User.save(null, {
                             success: function(user) {
                                 user.set("PP", img); 
+                                console.log("PP send Success");
                                 user.save();
                             }
                         });

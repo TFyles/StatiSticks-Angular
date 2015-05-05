@@ -54,8 +54,11 @@ function MainCtrl($scope, $timeout, $location, ParseService){
     ParseService.logOut();
     $('.page').css("display","none");
     $('#home').css("display","inline");
+    $('header').css('display', 'none');
+    $('body').css('background-color', '#4fc3f7');
     $('.button-collapse').sideNav('hide');
     Materialize.toast("Logging out", 4000);
+    console.log(Parse.User.current());
   }
 
   $scope.viewgraph = function(){
@@ -91,14 +94,15 @@ function MainCtrl($scope, $timeout, $location, ParseService){
     ParseService.displayProfilePicture();
   }
 
-  $scope.createBarChart = function(){
-    ParseService.createBarChart($scope.BarName, $scope.BarXLabel, $scope.BarYLabel, $scope.Bardp1, $scope.Bardp2, $scope.Bardp3, $scope.Bardp4, $scope.Bardp5, $scope.Bardp6);
-  }
-
   $scope.FauxBuy = function(){
     ParseService.FauxBuy();
   }
 
+  $scope.makeExample = function(){
+    ParseService.makeExample($scope.EgraphName, $scope.EgraphXLabel, $scope.EgraphYLabel, $scope.Edp1, $scope.Edp2, $scope.Edp3, $scope.Edp4, $scope.Edp5, $scope.Edp6);
+    $('#step1').css('display', 'none');
+    $('#end').css('display', 'inline');
+  }
 
   $scope.createLineGraph = function(){
     ParseService.createLineGraph($scope.graphName, $scope.graphXLabel, $scope.graphYLabel, $scope.dp1, $scope.dp2, $scope.dp3, $scope.dp4, $scope.dp5, $scope.dp6);
@@ -133,6 +137,8 @@ function MainCtrl($scope, $timeout, $location, ParseService){
         $scope.$apply(function(){
           $scope.userDetails = results;
           $('#profilePic').html("<img class='circle profilePic' src=" + $scope.userDetails.get('PP') + ">");
+          $('#phonegapcamera').css('display', 'none');
+          $('#fileupload').css('display', 'none');
         })
       });
     }, 400);
@@ -179,6 +185,7 @@ function MainCtrl($scope, $timeout, $location, ParseService){
 
   $scope.saveReport = function(){
     ParseService.saveReport($scope.gameDate, $scope.gameHome, $scope.gameAway, $scope.gameHomeGoals, $scope.gameAwayGoals, $scope.gameReport);
+    console.log($scope.gameDate);
     $timeout(function(){
       ParseService.getMatchReports(function(results){
       $scope.$apply(function(){
