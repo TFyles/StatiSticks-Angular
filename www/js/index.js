@@ -1,6 +1,13 @@
 Parse.initialize("imbkzuNYr6DWtmvB9dRU1nHdlWz0D3ET0Rj6MSKo", "ILwfj37tvWIiIdHNaPDEv0eEGdgoKuRMwHfa2vZp");
 $(document).ready(function() {
 
+    cordova.plugins.notification.local.schedule({
+    id: 1,
+    text: "How you rememberd to update your stats from todays game?",
+    firstAt: saturday_at_6_pm,
+    every: "week"
+    });
+
     $('.button-collapse').sideNav({menuWidth: 240, activationWidth: 100});
     $('.modal-trigger').leanModal();
     
@@ -54,6 +61,12 @@ $(document).ready(function() {
         $('.page').css('display', 'none');
         $('#lineChart').css('display', 'inline');
         $('#page-title').text("Line Chart");
+    });
+    
+    $('#lineBack').click(function(){
+        $('.page').css('display', 'none');
+        $('#graph').css('display', 'inline');
+        $('#page-title').text("Graphs");
     });
     $('#toMatchReports').click(function(){
         $('.page').css('display', 'none');

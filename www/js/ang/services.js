@@ -34,6 +34,7 @@ angular.module('StatiSticksappServices', ['ngResource'])
                             $('header').css('display', 'inline');
                             $('body').css('background-color', '#eceff1');
                             $('#page-title').text("Profile");
+                            $('#modal1').closeModal();
 
                             
                         },

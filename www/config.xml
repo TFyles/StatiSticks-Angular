@@ -43,8 +43,7 @@
         <preference name="phonegap-version"       value="3.5.0" />
     -->
 
-    <!-- Plugins -->
-
+    <!-- Plugins --><gap:plugin name="de.appplant.cordova.plugin.local-notification"/>
     <!-- Core plugins -->
     <gap:plugin name="org.apache.cordova.battery-status" />
     <gap:plugin name="org.apache.cordova.camera" />
@@ -65,6 +64,7 @@
     <gap:plugin name="org.apache.cordova.splashscreen" />
     <gap:plugin name="org.apache.cordova.vibration" />
     <gap:plugin name="de.appplant.cordova.plugin.hidden-statusbar-overlay" />
+    <gap:plugin name="de.appplant.cordova.plugin.local-notification"/>
 
     <!-- Third party plugins -->
     <!-- A list of available plugins are available at https://build.phonegap.com/plugins -->

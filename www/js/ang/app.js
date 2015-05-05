@@ -19,6 +19,9 @@ function MainCtrl($scope, $timeout, $location, ParseService){
           $scope.userDetails = results;
           console.log("Current user" + $scope.userDetails);
           $('#profilePic').html("<img class='circle profilePic' src=" + $scope.userDetails.get('PP') + ">");
+          if ($scope.userDetails.get('PP') == undefined){
+            $('#profilePic').html("<img class='circle profilePic' src='img/ProfilePlaceholder.png'>");
+          }
         })
       });
       ParseService.updateStatsList(function(results){
