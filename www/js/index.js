@@ -1,24 +1,18 @@
 Parse.initialize("imbkzuNYr6DWtmvB9dRU1nHdlWz0D3ET0Rj6MSKo", "ILwfj37tvWIiIdHNaPDEv0eEGdgoKuRMwHfa2vZp");
 $(document).ready(function() {
 
-    cordova.plugins.notification.local.schedule({
-    id: 1,
-    text: "How you rememberd to update your stats from todays game?",
-    firstAt: saturday_at_6_pm,
-    every: "week"
-    });
 
     $('.button-collapse').sideNav({menuWidth: 240, activationWidth: 100});
     $('.modal-trigger').leanModal();
     
      $('.collapsible').collapsible({
-      accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+        accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
     });
 
      $('.datepicker').pickadate({
-    selectMonths: true, // Creates a dropdown to control month
-    selectYears: 15 // Creates a dropdown of 15 years to control year
-  });
+        selectMonths: true, // Creates a dropdown to control month
+        selectYears: 15 // Creates a dropdown of 15 years to control year
+    });
 
     $('#profileNav').click(function() {
         $('.page').css('display', 'none');
