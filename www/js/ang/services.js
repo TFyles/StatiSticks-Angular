@@ -127,10 +127,11 @@ angular.module('StatiSticksappServices', ['ngResource'])
                     }
 
                     var XAxisLabels = [];
-                    var count = 1;
-                    for (var i = 1; i < data.length; i++){
-                        XAxisLabels.push(count);
-                        count++;
+                    
+                    for (var i = 0; i < data.length; i++){
+                        var c = 1;
+                        XAxisLabels.push(c);
+                        c++;
                     }
                         chart = new Contour({
                         el: '#profileGraph',
@@ -291,10 +292,10 @@ angular.module('StatiSticksappServices', ['ngResource'])
                     }
 
                     var XAxisLabels = [];
-                    var count = 1;
-                    for (var i = 1; i < data.length; i++){
-                        XAxisLabels.push(count);
-                        count++;
+                    for (var i = 0; i < data.length; i++){
+                        var c = 1;
+                        XAxisLabels.push(c);
+                        c++;
                     }
                         chart = new Contour({
                         el: '#exampleGraph',
@@ -329,10 +330,10 @@ angular.module('StatiSticksappServices', ['ngResource'])
                     }
 
                     var XAxisLabels = [];
-                    var count = 1;
-                    for (var i = 1; i < data.length; i++){
-                        XAxisLabels.push(count);
-                        count++;
+                    for (var i = 0; i < data.length; i++){
+                        var c = 1;
+                        XAxisLabels.push(c);
+                        c++;
                     }
                         chart = new Contour({
                         el: '#lineGraph',

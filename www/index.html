@@ -177,9 +177,9 @@
         <div class="row">
             <div class="col s12" align="center">
                 <ul>
-                    <li>Position:  {{userDetails.get('Position')}}</li><br>
-                    <li>Club:  {{userDetails.get('Club')}}</li><br>
-                    <li>Number:  {{userDetails.get('Number')}}</li><br>
+                    <li>{{userDetails.get('Position')}}</li><br>
+                    <li>{{userDetails.get('Club')}}</li><br>
+                    <li>Number  {{userDetails.get('Number')}}</li><br>
                 </ul>
             </div>
         </div>
@@ -209,7 +209,7 @@
             <div class="center-text col s12">
                 <ul class="collapsible" data-collapsible="accordion">
                     <li>
-                        <div class="collapsible-header"><i class="mdi-image-filter-drama"></i>Stats</div>
+                        <div class="collapsible-header"><i class="mdi-av-equalizer"></i>Stats</div>
                         <div class="collapsible-body">
                             <p> Games: <span>{{userStats.get('Games')}}</span></p>
                             <p> Minutes: <span>{{userStats.get('Minutes')}}</span></p>
@@ -243,7 +243,7 @@
             <div class="center-text col s12">
                 <ul class="collapsible" data-collapsible="accordion">
                     <li>
-                        <div class="collapsible-header"><i class="mdi-image-filter-drama"></i>Stats</div>
+                        <div class="collapsible-header"><i class="mdi-av-equalizer"></i>Stats</div>
                         <div class="collapsible-body">
                             <p> Games: <span>{{userStats.get('Games')}}</span></p>
                             <p> Minutes: <span>{{userStats.get('Minutes')}}</span></p>
@@ -259,7 +259,7 @@
             <div class="center-text col s12">
                 <ul class="collapsible" data-collapsible="accordion">
                     <li>
-                        <div class="collapsible-header"><i class="mdi-image-filter-drama"></i>Advanced Stats</div>
+                        <div class="collapsible-header"><i class="mdi-av-equalizer"></i>Advanced Stats</div>
                         <div class="collapsible-body">
                             <p> Goals per game: <span>{{userAdvancedStats.goalsPerGame}}</span></p>
                             <p> Minutes per game: <span>{{userAdvancedStats.minutesPerGame}}</span></p>
@@ -371,22 +371,22 @@
             <li class="collection-item avatar  graphType" id="toLineChart">
                 <i class="mdi-action-trending-up circle green"></i>
                 <p class="padding-top">Line Chart</p>
-                <a href="#!" class="secondary-content"><i class="mdi-action-grade"></i></a>
+                <a href="#!" class="secondary-content"></a>
             </li>
             <li class="collection-item avatar graphType" ng-click="FauxBuy()">
                 <i class="mdi-editor-insert-chart circle yellow"></i>
                 <p class="padding-top">Horizontal Bar Chart (£5.99)</p>
-                <a href="#!" class="secondary-content"><i class="mdi-action-grade"></i></a>
+                <a href="#!" class="secondary-content"></a>
             </li>
             <li class="collection-item avatar graphType" id="" ng-click="FauxBuy()">
                 <i class="mdi-av-equalizer circle orange"></i>
                 <p class="padding-top">Column Chart (£5.99)</p>
-                <a href="#!" class="secondary-content"><i class="mdi-action-grade"></i></a>
+                <a href="#!" class="secondary-content"></a>
             </li>
             <li class="collection-item avatar graphType" ng-click="FauxBuy()">
                 <i class="mdi-device-signal-wifi-0-bar circle blue"></i>
                 <p class="padding-top">Pie Chart (£5.99)</p>
-                <a href="#!" class="secondary-content"><i class="mdi-action-grade"></i></a>
+                <a href="#!" class="secondary-content"></a>
             </li>
         </ul>
     </div>
@@ -485,12 +485,12 @@
                     <li class="collection-item avatar" id="toMatchReports">
                         <i class="mdi-editor-insert-comment circle yellow"></i>
                         <p class="padding-top">Read Match Reports</p>
-                        <a href="#!" class="secondary-content"><i class="mdi-action-grade"></i></a>
+                        <a href="#!" class="secondary-content"></a>
                     </li>
                     <li class="collection-item avatar" id="toWriteReports">
                         <i class="mdi-editor-mode-edit circle light-blue"></i>
                         <p class="padding-top">Report on a match</p>
-                        <a href="#!" class="secondary-content"><i class="mdi-action-grade"></i></a>
+                        <a href="#!" class="secondary-content"></a>
                     </li>
                 </ul>
             </div>
@@ -573,13 +573,13 @@
     <div class="page" id="offline" data-role="page">
         <button id="offlineBack" class="waves-effect waves-light btn light-blue lighten-2">Back</button>
         <div class="row" id="intro">
-            <div class="col s12">
+            <div class="col s12" align="center">
                 <p>No connection, or just want to try out the application. Follow our step by step guide in producing a graph, Press the button below to get started</p> <br>
                 <button class="waves-effect waves-light btn light-blue lighten-2 " id="endIntro"> Step 1 </button>
             </div>
         </div>
         <div class="row" id="step1">
-            <div class="col s12">
+            <div class="col s12" align="center">
                 <p>Start by entering the details into the form, anything from giving the Axis titles, to entering your data</p> <br>
                 <button data-target="modal7" class=" btn modal-trigger waves-effect waves-light btn light-blue lighten-2 "> Start Making Graph </button>
             </div>
