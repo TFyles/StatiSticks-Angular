@@ -61,6 +61,7 @@ function MainCtrl($scope, $timeout, $location, ParseService){
     $('body').css('background-color', '#4fc3f7');
     $('.button-collapse').sideNav('hide');
     Materialize.toast("Logging out", 4000);
+    navigator.notification.vibrate(1000);
     console.log(Parse.User.current());
   }
 

@@ -375,6 +375,7 @@ angular.module('StatiSticksappServices', ['ngResource'])
                             success: function(graph) {
                                 // Execute any logic that should take place after the object is saved.
                                 Materialize.toast("Graph Saved", 4000);
+                                navigator.notification.vibrate(500);
                             },
                             error: function(graph, error) {
                                 // Execute any logic that should take place if the save fails.
@@ -486,6 +487,7 @@ angular.module('StatiSticksappServices', ['ngResource'])
                                 stat.set("Minutes",Minutes);
                                 stat.save();
                                 Materialize.toast("Stats added", 4000);
+                                navigator.notification.vibrate(500);
                             }
                         });
                     }
@@ -516,6 +518,7 @@ angular.module('StatiSticksappServices', ['ngResource'])
                 reportsend.save(null, {
                     success: function(report) {
                         Materialize.toast("Match Report saved", 4000);
+                        navigator.notification.vibrate(500);
                     },
                     error: function(report, error) {
                         Materialize.toast('Failed to save ' + error.message, 1000);
