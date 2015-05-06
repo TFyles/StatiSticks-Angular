@@ -49,7 +49,7 @@ function MainCtrl($scope, $timeout, $location, ParseService){
 
   // Perform user signup using back-end service
   $scope.signUp = function() {
-    ParseService.signUp($scope.signUpName, $scope.signUpPass, $scope.signUpEmail, function(user) {
+    ParseService.signUp($scope.signUpName, $scope.signUpPass, $scope.signUpEmail, $scope.signUpClub, $scope.signUpNumber, $scope.signUpPosition,function(user) {
     });
   }
 
@@ -203,6 +203,9 @@ function MainCtrl($scope, $timeout, $location, ParseService){
     ParseService.getMatchReports(function(results){
       $scope.$apply(function(){
         $scope.matchReports = results;
+        if ($scope.matchReports.length == 0) {
+          $('#reportHeader').text("No match reports currently available")
+        };
       })
     });
   }  

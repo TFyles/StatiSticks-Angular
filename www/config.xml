@@ -6,7 +6,7 @@
         id        = "com.phonegap.statsticks"
         version   = "1.0.0">
 
-    <name>StatSticks</name>
+    <name>StatiSticks</name>
 
     <description>
         Possibly the world first so best and worst Field Hockey based statistics App.

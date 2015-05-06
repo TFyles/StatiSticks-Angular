@@ -46,16 +46,19 @@ angular.module('StatiSticksappServices', ['ngResource'])
                 },
 
                 // Register a user
-                signUp: function signUp(username, password, email, callback) {
+                signUp: function signUp(username, password, email, club, number, position,  callback) {
 
                     var user = new Parse.User();
+                    number = Number(number);
                     user.set("username", username);
                     user.set("password", password);
                     user.set("email", email);
+                    user.set("Club", club);
+                    user.set("Number", number);
+                    user.set("Position", position);
 
                     user.signUp(null, {
                         success: function(user) {
-                            alert("Thank You for signing up")
                             $('#signUpForm').css('display', 'none');
                             $('#homeButtons').css('display', 'inline');
                             Materialize.toast("Thank you for signing up", 4000);

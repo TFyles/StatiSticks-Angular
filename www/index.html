@@ -117,6 +117,28 @@
                             <input type="text" name="email" id="email" value="" ng-model="signUpEmail" />
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="browser-default">
+                            <select ng-model="signUpPosition">
+                                <option value="" disabled selected>Choose Your Positiion</option>
+                                <option value="Forward">Forward</option>
+                                <option value="Midfielder">Midfielder</option>
+                                <option value="Defender">Defender</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <label for="signUpClub">Club:</label>
+                            <input type="text" name="signUpClub" id="signUpClub" value="" ng-model="signUpClub" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <label for="signUpNumber">Squad Number:</label>
+                            <input type="Number" name="signUpNumber" id="signUpNumber" value="" ng-model="signUpNumber" />
+                        </div>
+                    </div>
                 </form>
             </div>
             <div class="center-text col s12">
@@ -152,25 +174,38 @@
                 <button class="waves-effect waves-light btn light-blue lighten-2 " id="cameraBack"> Cancel </button>
             </fieldset>
         </form> 
-    
         <div class="row">
-            <div class="center-text col s12">
-                <form>
-                    <div class="input-field col s12">
-                        <select id="graphList" ng-model="profileGraph">
-                            <option value="" disabled selected>Choose a graph to view</option>
-                            <option ng-repeat="graph in userGraphs" value="{{graph.get('Name')}}">{{graph.get('Name')}}</option>
-                        </select>
-                    </div>
-                </form>
+            <div class="col s12" align="center">
+                <ul>
+                    <li>Position:  {{userDetails.get('Position')}}</li><br>
+                    <li>Club:  {{userDetails.get('Club')}}</li><br>
+                    <li>Number:  {{userDetails.get('Number')}}</li><br>
+                </ul>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="center-text col s12" align="center">
+                <h5>Graphs</h5>
+            </div>
+           <div class="center-text col s12">
+                <select class="browser-default" ng-model="profileGraph">
+                    <option value="" disabled selected>Choose a graph to view</option>
+                    <option ng-repeat="graph in userGraphs" value="{{graph.get('Name')}}">{{graph.get('Name')}}</option>
+                </select>
             </div>
         </div>
         <div class="row">
+
             <div class="col s12" align="center">
                 <button data-target="modal6" class=" btn modal-trigger waves-effect waves-light btn light-blue lighten-2 " ng-click="viewgraph()"> View Graph </button>
             </div>
         </div>
+        <hr>
         <div class="row">
+            <div class="center-text col s12" align="center">
+                <h5>Stats</h5>
+            </div>
             <div class="center-text col s12">
                 <ul class="collapsible" data-collapsible="accordion">
                     <li>
@@ -334,22 +369,22 @@
         </div>
         <ul class="collection">
             <li class="collection-item avatar  graphType" id="toLineChart">
-                <i class="mdi-editor-insert-chart circle yellow"></i>
+                <i class="mdi-action-trending-up circle green"></i>
                 <p class="padding-top">Line Chart</p>
                 <a href="#!" class="secondary-content"><i class="mdi-action-grade"></i></a>
             </li>
             <li class="collection-item avatar graphType" ng-click="FauxBuy()">
-                <i class="mdi-file-folder circle light-blue"></i>
+                <i class="mdi-editor-insert-chart circle yellow"></i>
                 <p class="padding-top">Horizontal Bar Chart (£5.99)</p>
                 <a href="#!" class="secondary-content"><i class="mdi-action-grade"></i></a>
             </li>
             <li class="collection-item avatar graphType" id="" ng-click="FauxBuy()">
-                <i class="mdi-action-assessment circle green"></i>
+                <i class="mdi-av-equalizer circle orange"></i>
                 <p class="padding-top">Column Chart (£5.99)</p>
                 <a href="#!" class="secondary-content"><i class="mdi-action-grade"></i></a>
             </li>
             <li class="collection-item avatar graphType" ng-click="FauxBuy()">
-                <i class="mdi-av-play-arrow circle red"></i>
+                <i class="mdi-device-signal-wifi-0-bar circle blue"></i>
                 <p class="padding-top">Pie Chart (£5.99)</p>
                 <a href="#!" class="secondary-content"><i class="mdi-action-grade"></i></a>
             </li>
@@ -448,12 +483,12 @@
             <div class="col s12">
                 <ul class="collection">
                     <li class="collection-item avatar" id="toMatchReports">
-                        <i class="mdi-editor-insert-chart circle yellow"></i>
+                        <i class="mdi-editor-insert-comment circle yellow"></i>
                         <p class="padding-top">Read Match Reports</p>
                         <a href="#!" class="secondary-content"><i class="mdi-action-grade"></i></a>
                     </li>
                     <li class="collection-item avatar" id="toWriteReports">
-                        <i class="mdi-file-folder circle light-blue"></i>
+                        <i class="mdi-editor-mode-edit circle light-blue"></i>
                         <p class="padding-top">Report on a match</p>
                         <a href="#!" class="secondary-content"><i class="mdi-action-grade"></i></a>
                     </li>
@@ -462,6 +497,11 @@
         </div>
     </div>
     <div class="page" id="matchReports" data-role="page">
+        <div class="row">
+            <div class="col s12" align="">
+                <p id="reportHeader">View reports below</p>
+            </div>
+        </div>
         <div class="row" ng-repeat=" report in matchReports">
             <div class="center-text col s12">
                 <div class="card-panel #fefefe">
