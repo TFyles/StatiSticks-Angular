@@ -15,6 +15,13 @@ h1, h2, h3, h4, h5, h6 {
 	font-family: arimoregular, 'Geneva', 'sans-serif';
 	text-transform: capitalize;
 }
+#main-navigation li a{
+	color: #FDFDF0;
+}
+.navItem{
+	color: #FDFDF0;
+	border-bottom: 1px solid #FDFDF0;
+}
 #title{
 	position: absolute;
 	top: 30px;
@@ -28,6 +35,9 @@ h1, h2, h3, h4, h5, h6 {
 #page-title{
 	font-family: arimoregular, 'Geneva', 'sans-serif';
 	text-transform: capitalize;
+}
+#welcome{
+	padding-left: 10px;
 }
 #profile{
 	display: none;

@@ -26,17 +26,16 @@
 <body ng-controller="MainCtrl">
     <header class="light-blue lighten-2">
         <nav class="light-blue">
-            <ul id="slide-out" class="side-nav">
+            <ul id="slide-out" class="side-nav light-blue">
                 <div id="welcome">
-                    <h5>Welcome <span>Steve</span> </h5>
+                    <h5>Welcome <span>{{userDetails.get('username')}}</span></h5>
                 </div>
-                <div id="main-navigation">
-                    <li id="profileNav"> <a>Profile</a></li>
-                    <li id="statNav"><a>Stats</a></li>
-                    <li id="graphNav"><a>Graph</a></li>
-                    <li id="utilNav"><a>Utilities</a></li>
-                    <hr/>
-                    <li><a ng-click="logOut()" id="navbarLogOut">Log Out</li></a>
+                <div id="main-navigation" class="light-blue">
+                    <li class="navItem" id="profileNav"> <a>Profile</a></li>
+                    <li class="navItem" id="statNav"><a>Stats</a></li>
+                    <li class="navItem" id="graphNav"><a>Graph</a></li>
+                    <li class="navItem" id="utilNav"><a>Utilities</a></li>
+                    <li class="navItem"> <a ng-click="logOut()" id="navbarLogOut">Log Out</li></a>
                 </div>
             </ul>
             <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="mdi-navigation-menu"></i></a>
