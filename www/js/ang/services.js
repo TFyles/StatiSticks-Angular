@@ -35,7 +35,7 @@ angular.module('StatiSticksappServices', ['ngResource'])
                             $('body').css('background-color', '#eceff1');
                             $('#page-title').text("Profile");
                             $('#modal1').closeModal();
-                            navigator.notification.beep(1);
+                            navigator.notification.vibrate(1000);
 
                             
                         },
