@@ -32,6 +32,7 @@
                 </div>
                 <div id="main-navigation" class="light-blue">
                     <li class="navItem" id="profileNav"> <a>Profile</a></li>
+                    <li class="navItem" id="SearchfriendsNav"><a>Find Friends</a></li>
                     <li class="navItem" id="statNav"><a>Stats</a></li>
                     <li class="navItem" id="graphNav"><a>Graph</a></li>
                     <li class="navItem" id="utilNav"><a>Utilities</a></li>
@@ -179,6 +180,7 @@
                     <li>{{userDetails.get('Position')}}</li><br>
                     <li>{{userDetails.get('Club')}}</li><br>
                     <li>Number  {{userDetails.get('Number')}}</li><br>
+                    <li>Following {{FollowingAmount}}</li><br>
                 </ul>
             </div>
         </div>
@@ -220,6 +222,11 @@
                 </ul>
             </div>
         </div>
+        <div class="row">
+            <div class="col s12">
+                <button class="waves-effect waves-light btn light-blue lighten-2 " id="viewFollowing"> View Following </button>
+            </div>
+        </div>
         <div id="modal6" class="modal">
             <div class="modal-content">
                 <div id="profileGraph"></div>
@@ -229,6 +236,117 @@
             </div>
         </div>
     </div>
+
+    <div class="page" id="following" data-role="page">
+        <div class="row">
+            <div class="col s12" align="center">
+                <h5>Following</h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <ul class="collection">
+                    <a href="#!" ng-click="viewUser()" class="collection-item" ng-repeat="user in ImFollowing" >{{user.get("username")}}<span class="badge"><i class="mdi-hardware-keyboard-arrow-right"></i></span></a>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="page" id="friendsSearch" data-role="page">
+        <div class="row">
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="Username" id="users_name" type="text" class="validate" ng-model="searchName">
+                      <label for="first_name">Search Users</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <a class="waves-effect waves-light btn light-blue lighten-2" ng-click="userSearch()">Search</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <ul class="collection">
+                <a href="#!" ng-click="viewUser()" class="collection-item" ng-repeat="user in users" >{{user.get("username")}}<span class="badge"><i class="mdi-hardware-keyboard-arrow-right"></i></span></a>
+            </ul>
+        </div>
+    </div>
+
+    <div class="page" id="friendProfile" data-role="page">
+        <div class="row" id="profileFirst">
+            <div class="center-text col s12">
+                <div id="FriendprofilePic" align='center'></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="center-text col s12">
+                <h5 id="UsersName" align='center'> {{FriendUsername}}</h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="center-text col s12">
+                 <a class="waves-effect waves-light btn light-blue lighten-2" ng-click="follow()">Follow</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12" align="center">
+                <ul>
+                    <li>{{FriendPosition}}</li><br>
+                    <li>{{FriendClub}}</li><br>
+                    <li>Number  {{FriendNumber}}</li><br>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="center-text col s12" align="center">
+                <h5>Graphs</h5>
+            </div>
+           <div class="center-text col s12">
+                <select class="browser-default" ng-model="FriendprofileGraph">
+                    <option value="" disabled selected>Choose a graph to view</option>
+                    <option ng-repeat="graph in FrienduserGraphs" value="{{graph.get('Name')}}">{{graph.get('Name')}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12" align="center">
+                <button data-target="modal9" class=" btn modal-trigger waves-effect waves-light btn light-blue lighten-2 " ng-click="viewFriendgraph()"> View Graph </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="center-text col s12" align="center">
+                <h5>Stats</h5>
+            </div>
+            <div class="center-text col s12">
+                <ul class="collapsible" data-collapsible="accordion">
+                    <li>
+                        <div class="collapsible-header"><i class="mdi-av-equalizer"></i>Stats</div>
+                        <div class="collapsible-body">
+                            <p> Games: <span>{{FriendStats.get('Games')}}</span></p>
+                            <p> Minutes: <span>{{FriendStats.get('Minutes')}}</span></p>
+                            <p> Goals: <span>{{FriendStats.get('Goals')}}</span></p>
+                            <p> Assists: <span>{{FriendStats.get('Assists')}}</span></p>
+                            <p> Passes: <span>{{FriendStats.get('Passes')}}</span></p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="modal9" class="modal">
+            <div class="modal-content">
+                <div id="FriendprofileGraph"></div>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+            </div>
+        </div>
+    </div>
+
     <div class="page" id="stats" data-role="page">
         <div class="row">
             <div class="col s12" id="initStats">

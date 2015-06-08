@@ -27,6 +27,18 @@ $(document).ready(function() {
         $('.button-collapse').sideNav('hide');
         $('#page-title').text("Profile");
     });
+    $('#viewFollowing').click(function() {
+        $('.page').css('display', 'none');
+        $('#following').css('display', 'inline');
+        $('#page-title').text("Following");
+    });
+
+    $('#SearchfriendsNav').click(function(){
+        $('.page').css('display', 'none');
+        $('#friendsSearch').css('display', 'inline');
+        $('.button-collapse').sideNav('hide');
+        $('#page-title').text("Find Friends");
+    })
     $('#statNav').click(function() {
         $('.page').css('display', 'none');
         $('#stats').css('display', 'inline');

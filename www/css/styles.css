@@ -182,6 +182,9 @@ p{
 #utilities{
 	display: none;
 }
+#friendsSearch{
+	display: none;
+}
 #matchReports{
 	display: none;
 }
@@ -206,10 +209,19 @@ p{
 #end{
 	display: none;
 }
+#following{
+	display: none;
+}
 #exampleGraph{
 	width: 100px;
 }
-
+#searchResult{
+	border-top: 1px solid #EEE;
+	border-bottom: 1px solid #EEE;
+}
+#friendProfile{
+	display: none;
+}
 @font-face {
     font-family: 'alegreya_sansregular';
     src: url('font/alegreyasans-regular-webfont.eot');

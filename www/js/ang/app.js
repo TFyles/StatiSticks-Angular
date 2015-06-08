@@ -13,6 +13,7 @@ function MainCtrl($scope, $timeout, $location, ParseService){
     $scope.updateGraphList();
     $scope.addStatsChecker();
     $scope.displayProfilePicture();
+
     $timeout(function() {
       ParseService.getUserDetails(function(results){
         $scope.$apply(function(){
@@ -28,9 +29,18 @@ function MainCtrl($scope, $timeout, $location, ParseService){
         $scope.$apply(function(){
           $scope.userStats = results;
         })
+      });
       ParseService.getMatchReports(function(results){
       $scope.$apply(function(){
         $scope.matchReports = results;
+        })
+      });
+      ParseService.getFollowing(function(results){
+      $scope.$apply(function() {
+        $scope.ImFollowing = results;
+        var len = $scope.ImFollowing.length;
+        console.log(len);
+        $scope.FollowingAmount = len;
         })
       });
         $timeout(function(){
@@ -41,9 +51,7 @@ function MainCtrl($scope, $timeout, $location, ParseService){
             })
           });
         }, 500);
-      })
     }, 400);
-    
     });
   }
 
@@ -77,6 +85,18 @@ function MainCtrl($scope, $timeout, $location, ParseService){
     });
   }
 
+  $scope.viewFriendgraph = function(){
+    ParseService.viewFriendgraph($scope.FriendprofileGraph, function(graph){
+      $scope.$apply(function(){
+        $scope.FriendprofileGraph = graph;
+        console.log($scope.FriendprofileGraph);
+      })
+      $timeout(function(){
+        ParseService.showFriendGraph($scope.FriendprofileGraph)
+      }, 500);
+    });
+  }
+
   $scope.updateGraphList = function(){
     ParseService.updateGraphList( function(results){
       $scope.$apply(function(){
@@ -84,6 +104,65 @@ function MainCtrl($scope, $timeout, $location, ParseService){
       })
     });
 
+  }
+
+  $scope.userSearch = function(){
+    ParseService.userSearch($scope.searchName ,function(results){
+      $scope.$apply(function(){
+        $scope.users = results;
+      })
+    });
+  }
+
+  $scope.viewUser = function(){
+    var username = this.user.get('username');
+    var user = this.user;
+    ParseService.FriendGraphList( user ,function(results){
+      $scope.$apply(function(){
+        $scope.FrienduserGraphs = results;
+        var len = $scope.FrienduserGraphs.length;
+        console.log(len);
+      })
+    });
+    ParseService.updateFriendStatsList(user, function(results){
+        $scope.$apply(function(){
+          $scope.FriendStats = results;
+        })
+    });
+    $scope.FriendUsername = username;
+    var PP = this.user.get("PP")
+    $('#FriendprofilePic').html("<img class='circle profilePic' src=" + PP + ">");
+      if (PP == undefined){
+        $('#FriendprofilePic').html("<img class='circle profilePic' src='img/ProfilePlaceholder.png'>");
+    }
+    $scope.FriendPosition = this.user.get('Position');
+    $scope.FriendClub = this.user.get('Club');
+    $scope.FriendNumber = this.user.get('Number');
+    $('.page').css('display', 'none');
+    $('#friendProfile').css('display', 'inline');
+    $('#page-title').text(username);
+
+  }
+
+  $scope.follow = function(){
+    var current = $scope.userDetails.get('username');
+    var username = $scope.FriendUsername;
+    console.log(username);
+    if ( current == username){
+      console.log("Cant follow yourself");
+    } else {
+    ParseService.follow(username);
+    $timeout(function(){
+        ParseService.getFollowing(function(results){
+      $scope.$apply(function() {
+        $scope.ImFollowing = results;
+        var len = $scope.ImFollowing.length;
+        console.log(len);
+        $scope.FollowingAmount = len;
+        })
+      });
+      }, 1000);
+    }
   }
 
   $scope.addStatsChecker = function(){
@@ -228,10 +307,20 @@ function MainCtrl($scope, $timeout, $location, ParseService){
     $scope.userDetails;
     $scope.matchReports;
     $scope.userStats;
+    $scope.FriendStats;
     $scope.userAdvancedStats;
+    $scope.users = [];
     $scope.init();
     $scope.image;
     $scope.userGraphs;
+    $scope.FrienduserGraphs;
+    $scope.FriendprofileGraph;
     $scope.profileGraph;
+    $scope.FriendUsername;
+    $scope.FriendPosition;
+    $scope.FriendClub;
+    $scope.FriendNumber;
+    $scope.ImFollowing;
+    $scope.FollowingAmount;
 }
 MainCtrl.$inject = ['$scope', '$timeout', '$location', 'ParseService']
