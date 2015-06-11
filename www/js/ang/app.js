@@ -11,7 +11,6 @@ function MainCtrl($scope, $timeout, $location, ParseService){
   $scope.login = function() {
     ParseService.login($scope.loginName, $scope.loginPass, function(user) { 
     $scope.updateGraphList();
-    $scope.addStatsChecker();
     $scope.displayProfilePicture();
 
     $timeout(function() {
@@ -50,6 +49,10 @@ function MainCtrl($scope, $timeout, $location, ParseService){
               console.log(results);
             })
           });
+        }, 500);
+        $timeout(function(){
+          ParseService.addStatsChecker();
+          console.log("Checking stats");
         }, 500);
     }, 400);
     });
@@ -138,10 +141,34 @@ function MainCtrl($scope, $timeout, $location, ParseService){
     $scope.FriendPosition = this.user.get('Position');
     $scope.FriendClub = this.user.get('Club');
     $scope.FriendNumber = this.user.get('Number');
+    console.log($scope.ImFollowing.indexOf(user));
+    if ($scope.ImFollowing.indexOf(user) > -1){
+      $('#follow').css('display', 'none');
+      $('#unfollow').css('display', 'inline');
+      console.log("Following");
+    }else{
+      $('#unfollow').css('display', 'none');
+      $('#follow').css('display', 'inline');
+    }
     $('.page').css('display', 'none');
     $('#friendProfile').css('display', 'inline');
     $('#page-title').text(username);
 
+  }
+
+  $scope.unFollow = function(){
+    var username = $scope.FriendUsername;
+    ParseService.unFollow(username);
+    $timeout(function(){
+        ParseService.getFollowing(function(results){
+      $scope.$apply(function() {
+        $scope.ImFollowing = results;
+        var len = $scope.ImFollowing.length;
+        console.log(len);
+        $scope.FollowingAmount = len;
+        })
+      });
+    }, 1000);
   }
 
   $scope.follow = function(){
@@ -149,7 +176,7 @@ function MainCtrl($scope, $timeout, $location, ParseService){
     var username = $scope.FriendUsername;
     console.log(username);
     if ( current == username){
-      console.log("Cant follow yourself");
+      Materialize.toast("Cant follow yourself", 2000);
     } else {
     ParseService.follow(username);
     $timeout(function(){
@@ -228,6 +255,26 @@ function MainCtrl($scope, $timeout, $location, ParseService){
     }, 1000);
   }
 
+  $scope.resetStats = function(){
+    ParseService.resetStats();
+    $timeout(function() {
+      ParseService.updateStatsList(function(results){
+        $scope.$apply(function(){
+          $scope.userStats = results;
+        })
+        $timeout(function(){
+          ParseService.getAdvancedStats($scope.userStats, function(results){
+            $scope.$apply(function(){
+              $scope.userAdvancedStats = results;
+              console.log(results);
+            })
+          });
+          ParseService.addStatsChecker();
+        }, 500);
+      })
+    }, 400);
+  }
+
   $scope.addStats = function(){
     ParseService.addStats($scope.statGames, $scope.statGoals, $scope.statAssists, $scope.statMinutes, $scope.statPasses);
     $timeout(function() {
@@ -242,6 +289,7 @@ function MainCtrl($scope, $timeout, $location, ParseService){
               console.log(results);
             })
           });
+          ParseService.addStatsChecker();
         }, 500);
       })
     }, 400);

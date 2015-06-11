@@ -19,7 +19,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script src="js/contour.js"></script>
-    
     <title>StatSticks</title>
 </head>
 
@@ -164,7 +163,7 @@
             <h5>Update Profile Picture</h5>
             <fieldset>
                 <div class="file-field input-field">
-                    <input class="file-path validate" type="text"/>
+                    <input class="file-path validate" type="text" />
                     <div class="btn">
                         <span>File</span>
                         <input type="file" id="fileselect" ng-model="profilePic">
@@ -173,40 +172,45 @@
                 <button class="waves-effect waves-light btn light-blue lighten-2 " ng-click="uploadProfilePic()"> Upload </button>
                 <button class="waves-effect waves-light btn light-blue lighten-2 " id="cameraBack"> Cancel </button>
             </fieldset>
-        </form> 
+        </form>
         <div class="row">
-            <div class="col s12" align="center">
-                <ul>
-                    <li>{{userDetails.get('Position')}}</li><br>
-                    <li>{{userDetails.get('Club')}}</li><br>
-                    <li>Number  {{userDetails.get('Number')}}</li><br>
-                    <li>Following {{FollowingAmount}}</li><br>
+            <div class="center-text col s12">
+                <ul class="collapsible" data-collapsible="accordion">
+                    <li>
+                        <div class="collapsible-header"><i class="mdi-av-equalizer"></i>About</div>
+                        <div class="collapsible-body">
+                            <p> Position: <span>{{userDetails.get('Position')}}</span></p>
+                            <p> Club: <span>{{userDetails.get('Club')}}</span></p>
+                            <p> Number: <span>{{userDetails.get('Number')}}</span></p>
+                            <p> Following: <span> {{FollowingAmount}}</span> users</p>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>
-        <hr>
         <div class="row">
-            <div class="center-text col s12" align="center">
-                <h5>Graphs</h5>
-            </div>
-           <div class="center-text col s12">
-                <select class="browser-default" ng-model="profileGraph">
-                    <option value="" disabled selected>Choose a graph to view</option>
-                    <option ng-repeat="graph in userGraphs" value="{{graph.get('Name')}}">{{graph.get('Name')}}</option>
-                </select>
+            <div class="center-text col s12">
+                <ul class="collapsible" data-collapsible="accordion">
+                    <li>
+                        <div class="collapsible-header"><i class="mdi-av-equalizer"></i>Graphs</div>
+                        <div class="collapsible-body">
+                            <div class="center-text col s12">
+                                <select class="browser-default" ng-model="profileGraph">
+                                    <option value="" disabled selected>Choose a graph to view</option>
+                                    <option ng-repeat="graph in userGraphs" value="{{graph.get('Name')}}">{{graph.get('Name')}}</option>
+                                </select>
+                            </div>
+                            <div class="row">
+                                <div class="col s12" align="center">
+                                    <button data-target="modal6" class=" btn modal-trigger waves-effect waves-light btn light-blue lighten-2 " ng-click="viewgraph()"> View Graph </button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
         <div class="row">
-
-            <div class="col s12" align="center">
-                <button data-target="modal6" class=" btn modal-trigger waves-effect waves-light btn light-blue lighten-2 " ng-click="viewgraph()"> View Graph </button>
-            </div>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="center-text col s12" align="center">
-                <h5>Stats</h5>
-            </div>
             <div class="center-text col s12">
                 <ul class="collapsible" data-collapsible="accordion">
                     <li>
@@ -223,7 +227,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col s12">
+            <div class="col s12" align="center">
                 <button class="waves-effect waves-light btn light-blue lighten-2 " id="viewFollowing"> View Following </button>
             </div>
         </div>
@@ -236,30 +240,22 @@
             </div>
         </div>
     </div>
-
     <div class="page" id="following" data-role="page">
-        <div class="row">
-            <div class="col s12" align="center">
-                <h5>Following</h5>
-            </div>
-        </div>
         <div class="row">
             <div class="col s12">
                 <ul class="collection">
-                    <a href="#!" ng-click="viewUser()" class="collection-item" ng-repeat="user in ImFollowing" >{{user.get("username")}}<span class="badge"><i class="mdi-hardware-keyboard-arrow-right"></i></span></a>
+                    <a href="#!" ng-click="viewUser()" class="collection-item" ng-repeat="user in ImFollowing">{{user.get("username")}}<span class="badge"><i class="mdi-hardware-keyboard-arrow-right"></i></span></a>
                 </ul>
             </div>
         </div>
     </div>
-
-
     <div class="page" id="friendsSearch" data-role="page">
         <div class="row">
             <form class="col s12">
                 <div class="row">
                     <div class="input-field col s12">
-                      <input placeholder="Username" id="users_name" type="text" class="validate" ng-model="searchName">
-                      <label for="first_name">Search Users</label>
+                        <input placeholder="Username" id="users_name" type="text" class="validate" ng-model="searchName">
+                        <label for="first_name">Search Users</label>
                     </div>
                 </div>
                 <div class="row">
@@ -271,11 +267,10 @@
         </div>
         <div class="row">
             <ul class="collection">
-                <a href="#!" ng-click="viewUser()" class="collection-item" ng-repeat="user in users" >{{user.get("username")}}<span class="badge"><i class="mdi-hardware-keyboard-arrow-right"></i></span></a>
+                <a href="#!" ng-click="viewUser()" class="collection-item" ng-repeat="user in users">{{user.get("username")}}<span class="badge"><i class="mdi-hardware-keyboard-arrow-right"></i></span></a>
             </ul>
         </div>
     </div>
-
     <div class="page" id="friendProfile" data-role="page">
         <div class="row" id="profileFirst">
             <div class="center-text col s12">
@@ -287,40 +282,53 @@
                 <h5 id="UsersName" align='center'> {{FriendUsername}}</h5>
             </div>
         </div>
-        <div class="row">
-            <div class="center-text col s12">
-                 <a class="waves-effect waves-light btn light-blue lighten-2" ng-click="follow()">Follow</a>
+        <div class="row" id="follow">
+            <div class="center-text col s12" align="center">
+                <a class="waves-effect waves-light btn light-blue lighten-2" id="followButton" ng-click="follow()">Follow</a>
+            </div>
+        </div>
+        <div class="row" id="unfollow">
+            <div class="center-text col s12" align="center">
+                <a class="waves-effect waves-light btn light-blue lighten-2" id="unfollowButton" ng-click="unFollow()">unFollow</a>
             </div>
         </div>
         <div class="row">
-            <div class="col s12" align="center">
-                <ul>
-                    <li>{{FriendPosition}}</li><br>
-                    <li>{{FriendClub}}</li><br>
-                    <li>Number  {{FriendNumber}}</li><br>
+            <div class="center-text col s12">
+                <ul class="collapsible" data-collapsible="accordion">
+                    <li>
+                        <div class="collapsible-header"><i class="mdi-av-equalizer"></i>About</div>
+                        <div class="collapsible-body">
+                            <p> Position: <span>{{FriendPosition}}</span></p>
+                            <p> Club: <span>{{FriendClub}}</span></p>
+                            <p> Number: <span>{{FriendNumber}}</span></p>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>
         <div class="row">
-            <div class="center-text col s12" align="center">
-                <h5>Graphs</h5>
-            </div>
-           <div class="center-text col s12">
-                <select class="browser-default" ng-model="FriendprofileGraph">
-                    <option value="" disabled selected>Choose a graph to view</option>
-                    <option ng-repeat="graph in FrienduserGraphs" value="{{graph.get('Name')}}">{{graph.get('Name')}}</option>
-                </select>
+            <div class="center-text col s12">
+                <ul class="collapsible" data-collapsible="accordion">
+                    <li>
+                        <div class="collapsible-header"><i class="mdi-av-equalizer"></i>Graphs</div>
+                        <div class="collapsible-body">
+                            <div class="center-text col s12">
+                                <select class="browser-default" ng-model="FriendprofileGraph">
+                                    <option value="" disabled selected>Choose a graph to view</option>
+                                    <option ng-repeat="graph in FrienduserGraphs" value="{{graph.get('Name')}}">{{graph.get('Name')}}</option>
+                                </select>
+                            </div>
+                            <div class="row">
+                                <div class="col s12" align="center">
+                                    <button data-target="modal9" class=" btn modal-trigger waves-effect waves-light btn light-blue lighten-2 " ng-click="viewFriendgraph()"> View Graph </button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
         <div class="row">
-            <div class="col s12" align="center">
-                <button data-target="modal9" class=" btn modal-trigger waves-effect waves-light btn light-blue lighten-2 " ng-click="viewFriendgraph()"> View Graph </button>
-            </div>
-        </div>
-        <div class="row">
-            <div class="center-text col s12" align="center">
-                <h5>Stats</h5>
-            </div>
             <div class="center-text col s12">
                 <ul class="collapsible" data-collapsible="accordion">
                     <li>
@@ -336,7 +344,6 @@
                 </ul>
             </div>
         </div>
-
         <div id="modal9" class="modal">
             <div class="modal-content">
                 <div id="FriendprofileGraph"></div>
@@ -346,7 +353,6 @@
             </div>
         </div>
     </div>
-
     <div class="page" id="stats" data-role="page">
         <div class="row">
             <div class="col s12" id="initStats">
@@ -390,8 +396,24 @@
         </div>
         <div class="row">
             <div class="col s12" align="center" id="statButtons">
-                <button data-target="modal4" id="initStats" class=" btn modal-trigger waves-effect waves-light btn light-blue lighten-2 "> Add Stats </button>
-                <button data-target="modal5" id="accStats" class=" btn modal-trigger waves-effect waves-light btn light-blue lighten-2 "> Add Acc Stats </button>
+                <button data-target="modal4" id="initStatsButton" class=" btn modal-trigger waves-effect waves-light btn light-blue lighten-2 "> Add Stats </button>
+                <button data-target="modal5" id="AcumStatsButton" class=" btn modal-trigger waves-effect waves-light btn light-blue lighten-2 "> Add Acc Stats </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12" align="center">
+                <button data-target="modal10" id="resetButton" class=" btn modal-trigger waves-effect waves-light btn light-blue lighten-2">Reset stats</button>
+            </div>
+        </div>
+        <div id="modal10" class="modal">
+            <div class="modal-content">
+                <div class="row">
+                    <div>Are you sure you want to reset all your stats? You will have to re enter your stats again.</div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" ng-click="resetStats()" class=" waves-effect waves-light btn light-blue lighten-2 btn-flat">Yes</a>
+                <a href="#!" class=" modal-action modal-close waves-effect waves-light btn light-blue lighten-2 btn-flat">N0</a>
             </div>
         </div>
         <div id="modal4" class="modal">

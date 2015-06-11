@@ -170,13 +170,16 @@ p{
     width: 44%;
     height: 24%;
 }
-#accStats{
+#accStatsButton{
 	display: none;
 }
 #statsRow{
 	display: none;
 }
 #advancedStatsRow{
+	display: none;
+}
+#unfollow{
 	display: none;
 }
 #utilities{

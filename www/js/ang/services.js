@@ -35,7 +35,9 @@ angular.module('StatiSticksappServices', ['ngResource'])
                         $('body').css('background-color', '#eceff1');
                         $('#page-title').text("Profile");
                         $('#modal1').closeModal();
+                        $('#logInForm')[0].reset();
                         navigator.notification.vibrate(1000);
+                        Materialize.toast("Welcome" + user.get('username'), 4000);
 
 
                     },
@@ -61,6 +63,7 @@ angular.module('StatiSticksappServices', ['ngResource'])
                     success: function(user) {
                         $('#signUpForm').css('display', 'none');
                         $('#homeButtons').css('display', 'inline');
+                        $('#signUpForm')[0].reset();
                         Materialize.toast("Thank you for signing up", 4000);
                     },
                     error: function(user, error) {
@@ -99,7 +102,7 @@ angular.module('StatiSticksappServices', ['ngResource'])
                 }
 
                 function error(error) {
-                    alert("Error: " + error.code + " " + error.message);
+                    Materialize.toast("Error: " + error.code + " " + error.message , 4000);
                 }
             },
 
@@ -115,6 +118,27 @@ angular.module('StatiSticksappServices', ['ngResource'])
                             success: function(user) {
                                 user.addUnique("Following", sendName);
                                 user.save();
+                                Materialize.toast("now following " + sendName, 4000);
+                            }
+                        });
+
+                    }
+                });
+            },
+
+            unFollow: function unFollow(name, callback) {
+                var User = Parse.Object.extend("User");
+                var query = new Parse.Query(User);
+                var theuser = Parse.User.current().id;
+                var sendName = String(name);
+                query.equalTo("objectId", theuser);
+                query.first({
+                    success: function(User) {
+                        User.save(null, {
+                            success: function(user) {
+                                user.remove("Following", sendName);
+                                user.save();
+                                Materialize.toast("unFollow " + sendName, 4000);
                             }
                         });
 
@@ -146,7 +170,7 @@ angular.module('StatiSticksappServices', ['ngResource'])
                 })
             },
 
-                viewFriendgraph: function viewFriendgraph(name, callback) {
+            viewFriendgraph: function viewFriendgraph(name, callback) {
 
                 console.log(name);
                 var GraphData = Parse.Object.extend("GraphData");
@@ -162,7 +186,7 @@ angular.module('StatiSticksappServices', ['ngResource'])
                 }
 
                 function error(error) {
-                    alert("Error: " + error.code + " " + error.message);
+                    Materialize.toast("Error: " + error.code + " " + error.message , 4000);
                 }
             },
 
@@ -224,6 +248,7 @@ angular.module('StatiSticksappServices', ['ngResource'])
                         .render();
                 } else {
                     console.log("Not Supported");
+                    Materialize.toast("Graph not supported" , 4000);
                 }
             },
 
@@ -306,7 +331,7 @@ angular.module('StatiSticksappServices', ['ngResource'])
                 }
 
                 function error(error) {
-                    alert("Error: " + error.code + " " + error.message);
+                    Materialize.toast("Error: " + error.code + " " + error.message , 4000);
                 }
             },
 
@@ -326,7 +351,7 @@ angular.module('StatiSticksappServices', ['ngResource'])
                 }
 
                 function error(error) {
-                    alert("Error: " + error.code + " " + error.message);
+                    Materialize.toast("Error: " + error.code + " " + error.message , 4000);
                 }
             },
 
@@ -340,7 +365,7 @@ angular.module('StatiSticksappServices', ['ngResource'])
                         callback(results);
                     },
                     error: function(results, error) {
-                        console.log("Failed to load");
+                        Materialize.toast("Failed to load" +"Error: " + error.code + " " + error.message , 4000);
                     }
                 });
 
@@ -359,7 +384,7 @@ angular.module('StatiSticksappServices', ['ngResource'])
                         console.log("Found user stats");
                     },
                     error: function(error) {
-                        alert("Error: " + error.message);
+                        Materialize.toast("Failed to load" +"Error: " + error.code + " " + error.message , 4000);
                     }
                 });
             },
@@ -397,6 +422,7 @@ angular.module('StatiSticksappServices', ['ngResource'])
 
             },
 
+
             addStatsChecker: function addStatsChecker() {
                 var user = Parse.User.current();
                 var Stats = Parse.Object.extend("Stats");
@@ -408,16 +434,30 @@ angular.module('StatiSticksappServices', ['ngResource'])
                 });
 
                 function querySuccess(Stats) {
-                    if (Stats.length >= 1) {
+                    console.log(Stats);
+                    if (Stats.length == 1) {
                         $('#initStats').css('display', 'none');
                         $('#accStats').css('display', 'inline');
+                        $('#resetButton').css('display','inline');
+                        $('#initStatsButton').css('display','none');
+                        $('#AcumStatsButton').css('display','inline');
                         $('#statsRow').css('display', 'inline');
                         $('#advancedStatsRow').css('display', 'inline');
-                    }
+                        console.log("ACC stats layout");
+                    } else {
+                        $('#initStats').css('display', 'inline');
+                        $('#accStats').css('display','none');
+                        $('#resetButton').css('display','none');
+                        $('#initStatsButton').css('display','inline');
+                        $('#AcumStatsButton').css('display','none');
+                        $('#statsRow').css('display', 'none');
+                        $('#advancedStatsRow').css('display', 'none');
+                        console.log("Add stats layout");
+                    };
                 }
 
                 function error(error) {
-                    alert("Error: " + error.code + " " + error.message);
+                    Materialize.toast("Failed to load" +"Error: " + error.code + " " + error.message , 4000);
                 }
             },
 
@@ -433,7 +473,7 @@ angular.module('StatiSticksappServices', ['ngResource'])
                         console.log("Found user details");
                     },
                     error: function(error) {
-                        alert("Error: " + error.message);
+                        Materialize.toast("Failed to load" +"Error: " + error.code + " " + error.message , 4000);
                     }
                 });
             },
@@ -461,7 +501,7 @@ angular.module('StatiSticksappServices', ['ngResource'])
             },
 
             FauxBuy: function FauxBuy() {
-                alert("Transaction Failed");
+                Materialize.toast("Transaction Failed" , 4000);
             },
 
             makeExample: function makeExample(name, xlabel, ylabel, point1, point2, point3, point4, point5, point6) {
@@ -627,6 +667,7 @@ angular.module('StatiSticksappServices', ['ngResource'])
 
             },
 
+
             //Add Stats for logged in user
 
             addStats: function addStats(games, goals, assists, minutes, passes) {
@@ -653,11 +694,14 @@ angular.module('StatiSticksappServices', ['ngResource'])
                     success: function(stats) {
                         // Execute any logic that should take place after the object is saved.
                         Materialize.toast("Stats added", 4000);
+                        $('.page').css('display', 'none');
+                        $('#profile').css('display', 'inline');
+                        $('#page-title').text("Profile");
                     },
                     error: function(stats, error) {
                         // Execute any logic that should take place if the save fails.
                         // error is a Parse.Error with an error code and message.
-                        alert('Failed to create new object, with error code: ' + error.message);
+                        Materialize.toast('Failed to create new object, with error code: ' + error.message, 4000);
                     }
                 })
 
@@ -720,6 +764,29 @@ angular.module('StatiSticksappServices', ['ngResource'])
 
             },
 
+            resetStats: function resetStats() {
+                var Stat = Parse.Object.extend("Stats");
+                var query = new Parse.Query(Stat);
+                var user = Parse.User.current()
+                query.equalTo("User", user);
+                query.first({
+                    success: function(Stat) {
+                        Stat.destroy({
+                            success: function(Stat) {
+                                Materialize.toast("Stats Reset", 4000);
+                                $('.page').css('display', 'none');
+                                $('#profile').css('display', 'inline');
+                                $('#page-title').text("Profile");
+
+                            },
+                            error: function(Stat, error) {
+                                Materialize.toast('Failed to reset ' + error.message, 1000);
+                            }
+                        });
+                    }
+                });
+            },
+
             saveReport: function saveReport(date, home, away, homegoals, awaygoals, report) {
                 var homegoals = Number(homegoals);
                 var awaygoals = Number(awaygoals);
@@ -760,7 +827,7 @@ angular.module('StatiSticksappServices', ['ngResource'])
                         callback(results);
                     },
                     error: function(results, error) {
-                        console.log("Failed to load");
+                         Materialize.toast('Failed to load ' + error.message, 1000);
                     }
                 });
             },
@@ -805,8 +872,8 @@ angular.module('StatiSticksappServices', ['ngResource'])
                         User.save(null, {
                             success: function(user) {
                                 user.set("PP", img);
-                                console.log("PP send Success");
                                 user.save();
+                                 Materialize.toast('Profile Pic saved', 1000);
                             }
                         });
                     }
