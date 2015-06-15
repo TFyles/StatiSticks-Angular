@@ -102,7 +102,7 @@ angular.module('StatiSticksappServices', ['ngResource'])
                 }
 
                 function error(error) {
-                    Materialize.toast("Error: " + error.code + " " + error.message , 4000);
+                    Materialize.toast("Error: " + error.code + " " + error.message, 4000);
                 }
             },
 
@@ -186,7 +186,7 @@ angular.module('StatiSticksappServices', ['ngResource'])
                 }
 
                 function error(error) {
-                    Materialize.toast("Error: " + error.code + " " + error.message , 4000);
+                    Materialize.toast("Error: " + error.code + " " + error.message, 4000);
                 }
             },
 
@@ -248,7 +248,7 @@ angular.module('StatiSticksappServices', ['ngResource'])
                         .render();
                 } else {
                     console.log("Not Supported");
-                    Materialize.toast("Graph not supported" , 4000);
+                    Materialize.toast("Graph not supported", 4000);
                 }
             },
 
@@ -331,7 +331,7 @@ angular.module('StatiSticksappServices', ['ngResource'])
                 }
 
                 function error(error) {
-                    Materialize.toast("Error: " + error.code + " " + error.message , 4000);
+                    Materialize.toast("Error: " + error.code + " " + error.message, 4000);
                 }
             },
 
@@ -351,7 +351,7 @@ angular.module('StatiSticksappServices', ['ngResource'])
                 }
 
                 function error(error) {
-                    Materialize.toast("Error: " + error.code + " " + error.message , 4000);
+                    Materialize.toast("Error: " + error.code + " " + error.message, 4000);
                 }
             },
 
@@ -365,7 +365,7 @@ angular.module('StatiSticksappServices', ['ngResource'])
                         callback(results);
                     },
                     error: function(results, error) {
-                        Materialize.toast("Failed to load" +"Error: " + error.code + " " + error.message , 4000);
+                        Materialize.toast("Failed to load" + "Error: " + error.code + " " + error.message, 4000);
                     }
                 });
 
@@ -384,7 +384,7 @@ angular.module('StatiSticksappServices', ['ngResource'])
                         console.log("Found user stats");
                     },
                     error: function(error) {
-                        Materialize.toast("Failed to load" +"Error: " + error.code + " " + error.message , 4000);
+                        Materialize.toast("Failed to load" + "Error: " + error.code + " " + error.message, 4000);
                     }
                 });
             },
@@ -438,18 +438,18 @@ angular.module('StatiSticksappServices', ['ngResource'])
                     if (Stats.length == 1) {
                         $('#initStats').css('display', 'none');
                         $('#accStats').css('display', 'inline');
-                        $('#resetButton').css('display','inline');
-                        $('#initStatsButton').css('display','none');
-                        $('#AcumStatsButton').css('display','inline');
+                        $('#resetButton').css('display', 'inline');
+                        $('#initStatsButton').css('display', 'none');
+                        $('#AcumStatsButton').css('display', 'inline');
                         $('#statsRow').css('display', 'inline');
                         $('#advancedStatsRow').css('display', 'inline');
                         console.log("ACC stats layout");
                     } else {
                         $('#initStats').css('display', 'inline');
-                        $('#accStats').css('display','none');
-                        $('#resetButton').css('display','none');
-                        $('#initStatsButton').css('display','inline');
-                        $('#AcumStatsButton').css('display','none');
+                        $('#accStats').css('display', 'none');
+                        $('#resetButton').css('display', 'none');
+                        $('#initStatsButton').css('display', 'inline');
+                        $('#AcumStatsButton').css('display', 'none');
                         $('#statsRow').css('display', 'none');
                         $('#advancedStatsRow').css('display', 'none');
                         console.log("Add stats layout");
@@ -457,7 +457,7 @@ angular.module('StatiSticksappServices', ['ngResource'])
                 }
 
                 function error(error) {
-                    Materialize.toast("Failed to load" +"Error: " + error.code + " " + error.message , 4000);
+                    Materialize.toast("Failed to load" + "Error: " + error.code + " " + error.message, 4000);
                 }
             },
 
@@ -473,7 +473,7 @@ angular.module('StatiSticksappServices', ['ngResource'])
                         console.log("Found user details");
                     },
                     error: function(error) {
-                        Materialize.toast("Failed to load" +"Error: " + error.code + " " + error.message , 4000);
+                        Materialize.toast("Failed to load" + "Error: " + error.code + " " + error.message, 4000);
                     }
                 });
             },
@@ -501,7 +501,7 @@ angular.module('StatiSticksappServices', ['ngResource'])
             },
 
             FauxBuy: function FauxBuy() {
-                Materialize.toast("Transaction Failed" , 4000);
+                Materialize.toast("Transaction Failed", 4000);
             },
 
             makeExample: function makeExample(name, xlabel, ylabel, point1, point2, point3, point4, point5, point6) {
@@ -716,27 +716,28 @@ angular.module('StatiSticksappServices', ['ngResource'])
                 var Stat = Parse.Object.extend("Stats");
                 var query = new Parse.Query(Stat);
                 var user = Parse.User.current()
+               if (SetGames == NaN) {
+                            SetGames = 0;
+                        };
+                        if (SetGoals == NaN) {
+                            SetGoals = 0;
+                        };
+                        if (SetAssists == NaN) {
+                            SetAssists = 0;
+                        };
+                        if (SetPasses == NaN) {
+                            SetPasses = 0;
+                        };
+                        if (SetMinutes == NaN) {
+                            SetMinutes = 0;
+                            console.log("Minutes should be 0 is" + SetMinutes);
+                        };
 
                 console.log(SetGames);
-
-                if (SetGames == NaN) {
-                    SetGames = 0;
-                }
-                if (SetGoals == NaN) {
-                    SetGoals = 0;
-                }
-                if (SetAssists == NaN) {
-                    SetAssists = 0;
-                }
-                if (SetPasses == NaN) {
-                    SetPasses = 0;
-                }
-                if (SetMinutes == NaN) {
-                    SetMinutes = 0;
-                }
                 query.equalTo("User", user);
                 query.first({
                     success: function(Stat) {
+
                         var oldGames = Stat.get('Games');
                         var Games = (SetGames + oldGames);
                         var oldGoals = Stat.get('Goals');
@@ -747,6 +748,7 @@ angular.module('StatiSticksappServices', ['ngResource'])
                         var Passes = (SetPasses + oldPasses);
                         var oldMinutes = Stat.get('Minutes');
                         var Minutes = (SetMinutes + oldMinutes);
+                        console.log(Minutes);
                         Stat.save(null, {
                             success: function(stat) {
                                 stat.set("Games", Games);
@@ -756,7 +758,6 @@ angular.module('StatiSticksappServices', ['ngResource'])
                                 stat.set("Minutes", Minutes);
                                 stat.save();
                                 Materialize.toast("Stats added", 4000);
-                                navigator.notification.vibrate(500);
                             }
                         });
                     }
@@ -827,7 +828,7 @@ angular.module('StatiSticksappServices', ['ngResource'])
                         callback(results);
                     },
                     error: function(results, error) {
-                         Materialize.toast('Failed to load ' + error.message, 1000);
+                        Materialize.toast('Failed to load ' + error.message, 1000);
                     }
                 });
             },
@@ -873,7 +874,7 @@ angular.module('StatiSticksappServices', ['ngResource'])
                             success: function(user) {
                                 user.set("PP", img);
                                 user.save();
-                                 Materialize.toast('Profile Pic saved', 1000);
+                                Materialize.toast('Profile Pic saved', 1000);
                             }
                         });
                     }

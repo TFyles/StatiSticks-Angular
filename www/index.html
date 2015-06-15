@@ -35,7 +35,7 @@
                     <li class="navItem" id="statNav"><a>Stats</a></li>
                     <li class="navItem" id="graphNav"><a>Graph</a></li>
                     <li class="navItem" id="utilNav"><a>Utilities</a></li>
-                    <li class="navItem"> <a ng-click="logOut()" id="navbarLogOut">Log Out</li></a>
+                    <li class="navItem"> <a ng-click="logOut()" id="navbarLogOut">Log Out</a></li>
                 </div>
             </ul>
             <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="mdi-navigation-menu"></i></a>
@@ -259,7 +259,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col s12">
+                    <div class="col s12" align="center">
                         <a class="waves-effect waves-light btn light-blue lighten-2" ng-click="userSearch()">Search</a>
                     </div>
                 </div>
@@ -412,8 +412,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <a href="#!" ng-click="resetStats()" class=" waves-effect waves-light btn light-blue lighten-2 btn-flat">Yes</a>
-                <a href="#!" class=" modal-action modal-close waves-effect waves-light btn light-blue lighten-2 btn-flat">N0</a>
+                <a href="#!" ng-click="resetStats()" class=" waves-effect waves-light btn  btn-flat">Yes</a>
+                <a href="#!" class=" modal-action modal-close waves-effect waves-light btn btn-flat">N0</a>
             </div>
         </div>
         <div id="modal4" class="modal">
@@ -465,31 +465,31 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <label for="games">Games:</label>
-                        <input type="number" name="games" id="games" ng-model="stataccGames" value="">
+                        <input type="number" name="games" id="games" ng-model="stataccGames"  value="0">
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
                         <label for="goals">Goals:</label>
-                        <input type="number" name="goals" id="goals" ng-model="stataccGoals" value="">
+                        <input type="number" name="goals" id="goals" ng-model="stataccGoals" value="0">
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
                         <label for="assists"> Assists:</label>
-                        <input type="number" name="assists" id="assists" ng-model="stataccAssists" value="">
+                        <input type="number" name="assists" id="assists" ng-model="stataccAssists" value="0">
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
                         <label for="minutes">Minutes:</label>
-                        <input type="number" name="minutes" id="minutes" ng-model="stataccMinutes" value="">
+                        <input type="number" name="minutes" id="minutes" ng-model="stataccMinutes" value="0">
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
                         <label for="minutes">Passes:</label>
-                        <input type="number" name="passes" id="passes" ng-model="stataccPasses" value="">
+                        <input type="number" name="passes" id="passes" ng-model="stataccPasses" value="0">
                     </div>
                 </div>
             </div>
