@@ -53,10 +53,12 @@ function MainCtrl($scope, $timeout, $location, ParseService){
         $timeout(function(){
           ParseService.addStatsChecker();
           console.log("Checking stats");
+
         }, 500);
     }, 400);
     });
   }
+
 
   // Perform user signup using back-end service
   $scope.signUp = function() {
@@ -177,6 +179,8 @@ function MainCtrl($scope, $timeout, $location, ParseService){
   $scope.unFollow = function(){
     var username = $scope.FriendUsername;
     ParseService.unFollow(username);
+    $('#unfollow').css('display', 'none');
+    $('#follow').css('display', 'inline');
     $timeout(function(){
         ParseService.getFollowing(function(results){
       $scope.$apply(function() {
@@ -196,7 +200,9 @@ function MainCtrl($scope, $timeout, $location, ParseService){
     if ( current == username){
       Materialize.toast("Cant follow yourself", 2000);
     } else {
-    ParseService.follow(username);
+    ParseService.follow($scope.userDetails.get('username'),username);
+    $('#follow').css('display', 'none');
+    $('#unfollow').css('display', 'inline');
     $timeout(function(){
         ParseService.getFollowing(function(results){
       $scope.$apply(function() {
@@ -389,5 +395,6 @@ function MainCtrl($scope, $timeout, $location, ParseService){
     $scope.ImFollowing;
     $scope.MyFollowers;
     $scope.FollowingAmount;
+    $scope.FollowerAmount;
 }
 MainCtrl.$inject = ['$scope', '$timeout', '$location', 'ParseService']

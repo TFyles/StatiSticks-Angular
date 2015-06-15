@@ -108,10 +108,9 @@ angular.module('StatiSticksappServices', ['ngResource'])
                 }
             },
 
-            follow: function follow(name, callback) {
+            follow: function follow(userN,name, callback) {
                 var User = Parse.Object.extend("User");
                 var query = new Parse.Query(User);
-                var query2 = new Parse.Query(User);
                 var theuser = Parse.User.current().id;
                 var sendName = String(name);
                 query.equalTo("objectId", theuser);
@@ -127,6 +126,21 @@ angular.module('StatiSticksappServices', ['ngResource'])
 
                     }
                 });
+
+                // var Request = Parse.Object.extend("requests");
+                // var request = new Request();
+
+                // request.set("Sender", userN);
+                // request.set("reciever", sendName);
+                // request.set("type", "Follow");
+
+                // request.save(null, {
+                //   success: function(request) {
+                //   },
+                //   error: function(request, error) {
+                //     alert('Failed to create new object, with error code: ' + error.message);
+                //   }
+                // });
 
             },
 
@@ -368,6 +382,7 @@ angular.module('StatiSticksappServices', ['ngResource'])
                 query.find({
                     success: function(results) {
                         callback(results);
+                        $('#searchForm')[0].reset();
                     },
                     error: function(results, error) {
                         Materialize.toast("Failed to load" + "Error: " + error.code + " " + error.message, 4000);
@@ -384,6 +399,7 @@ angular.module('StatiSticksappServices', ['ngResource'])
                 query.find({
                     success: function(results) {
                         callback(results);
+                        $('#searchForm')[0].reset();
                     },
                     error: function(results, error) {
                         Materialize.toast("Failed to load" + "Error: " + error.code + " " + error.message, 4000);
@@ -627,6 +643,8 @@ angular.module('StatiSticksappServices', ['ngResource'])
                     .cartesian()
                     .line(data)
                     .render();
+                    $('#graphForm')[0].reset();
+
             },
 
             saveLineGraph: function saveLineGraph(name, xlabel, ylabel, point1, point2, point3, point4, point5, point6) {
@@ -718,6 +736,7 @@ angular.module('StatiSticksappServices', ['ngResource'])
                         $('.page').css('display', 'none');
                         $('#profile').css('display', 'inline');
                         $('#page-title').text("Profile");
+                        $('#InitStatsForm')[0].reset();
                     },
                     error: function(stats, error) {
                         // Execute any logic that should take place if the save fails.
@@ -779,6 +798,7 @@ angular.module('StatiSticksappServices', ['ngResource'])
                                 stat.set("Minutes", Minutes);
                                 stat.save();
                                 Materialize.toast("Stats added", 4000);
+                                $('#AccStatsForm')[0].reset();
                             }
                         });
                     }
@@ -833,6 +853,7 @@ angular.module('StatiSticksappServices', ['ngResource'])
                     success: function(report) {
                         Materialize.toast("Match Report saved", 4000);
                         navigator.notification.vibrate(500);
+                        $('#reportForm')[0].reset();
                     },
                     error: function(report, error) {
                         Materialize.toast('Failed to save ' + error.message, 1000);
