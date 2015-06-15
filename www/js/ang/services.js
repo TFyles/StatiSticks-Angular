@@ -52,12 +52,14 @@ angular.module('StatiSticksappServices', ['ngResource'])
 
                 var user = new Parse.User();
                 number = Number(number);
+                var accountType = document.getElementById('privateAcc').checked;
                 user.set("username", username);
                 user.set("password", password);
                 user.set("email", email);
                 user.set("Club", club);
                 user.set("Number", number);
                 user.set("Position", position);
+                user.set("private", accountType);
 
                 user.signUp(null, {
                     success: function(user) {
@@ -109,6 +111,7 @@ angular.module('StatiSticksappServices', ['ngResource'])
             follow: function follow(name, callback) {
                 var User = Parse.Object.extend("User");
                 var query = new Parse.Query(User);
+                var query2 = new Parse.Query(User);
                 var theuser = Parse.User.current().id;
                 var sendName = String(name);
                 query.equalTo("objectId", theuser);
@@ -124,6 +127,7 @@ angular.module('StatiSticksappServices', ['ngResource'])
 
                     }
                 });
+
             },
 
             unFollow: function unFollow(name, callback) {
@@ -360,6 +364,23 @@ angular.module('StatiSticksappServices', ['ngResource'])
                 var User = Parse.Object.extend("User")
                 var query = new Parse.Query(User);
                 query.equalTo("username", name);
+                query.notEqualTo("private", true);
+                query.find({
+                    success: function(results) {
+                        callback(results);
+                    },
+                    error: function(results, error) {
+                        Materialize.toast("Failed to load" + "Error: " + error.code + " " + error.message, 4000);
+                    }
+                });
+
+            },
+
+            clubSearch: function clubSearch(club, callback) {
+                var User = Parse.Object.extend("User")
+                var query = new Parse.Query(User);
+                query.equalTo("Club", club);
+                query.notEqualTo("private", true);
                 query.find({
                     success: function(results) {
                         callback(results);

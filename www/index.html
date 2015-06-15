@@ -55,7 +55,7 @@
             </div>
             <div class="row">
                 <div class="center-text col s12" align="center">
-                    <button id="offlineButton" class="waves-effect waves-light btn orange darken-4">Offline Mode</button>
+                    <p id="offlineButton">Offline Mode</p>
                 </div>
             </div>
         </div>
@@ -138,6 +138,12 @@
                             <input type="Number" name="signUpNumber" id="signUpNumber" value="" ng-model="signUpNumber" />
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input type="checkbox" class="filled-in" id="privateAcc" checked="checked" />
+      						<label for="privateAcc">Private Account</label>
+                        </div>
+                    </div>
                 </form>
             </div>
             <div class="center-text col s12">
@@ -178,7 +184,7 @@
                 <ul class="collapsible" data-collapsible="accordion">
                     <li>
                         <div class="collapsible-header"><i class="mdi-av-equalizer"></i>About</div>
-                        <div class="collapsible-body">
+                        <div class="collapsible-body list">
                             <p> Position: <span>{{userDetails.get('Position')}}</span></p>
                             <p> Club: <span>{{userDetails.get('Club')}}</span></p>
                             <p> Number: <span>{{userDetails.get('Number')}}</span></p>
@@ -215,7 +221,7 @@
                 <ul class="collapsible" data-collapsible="accordion">
                     <li>
                         <div class="collapsible-header"><i class="mdi-av-equalizer"></i>Stats</div>
-                        <div class="collapsible-body">
+                        <div class="collapsible-body list">
                             <p> Games: <span>{{userStats.get('Games')}}</span></p>
                             <p> Minutes: <span>{{userStats.get('Minutes')}}</span></p>
                             <p> Goals: <span>{{userStats.get('Goals')}}</span></p>
@@ -254,18 +260,26 @@
             <form class="col s12">
                 <div class="row">
                     <div class="input-field col s12">
-                        <input placeholder="Username" id="users_name" type="text" class="validate" ng-model="searchName">
+                        <input id="users_name" type="text" class="validate" ng-model="searchName">
                         <label for="first_name">Search Users</label>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col s12" align="center">
-                        <a class="waves-effect waves-light btn light-blue lighten-2" ng-click="userSearch()">Search</a>
+                	<div class="col s12" align="center">
+                		<h5>Searchy By</h5>
+                	</div>
+                </div>
+                <div class="row">
+                    <div class="col s6" align="center">
+                        <a class="waves-effect waves-light btn light-blue lighten-2" ng-click="userSearch()">Name</a>
+                    </div>
+                    <div class="col s6" align="center">
+                        <a class="waves-effect waves-light btn light-blue lighten-2" ng-click="clubSearch()">Club</a>
                     </div>
                 </div>
             </form>
         </div>
-        <div class="row">
+        <div class="row" id="searchResults">
             <ul class="collection">
                 <a href="#!" ng-click="viewUser()" class="collection-item" ng-repeat="user in users">{{user.get("username")}}<span class="badge"><i class="mdi-hardware-keyboard-arrow-right"></i></span></a>
             </ul>
@@ -297,7 +311,7 @@
                 <ul class="collapsible" data-collapsible="accordion">
                     <li>
                         <div class="collapsible-header"><i class="mdi-av-equalizer"></i>About</div>
-                        <div class="collapsible-body">
+                        <div class="collapsible-body list">
                             <p> Position: <span>{{FriendPosition}}</span></p>
                             <p> Club: <span>{{FriendClub}}</span></p>
                             <p> Number: <span>{{FriendNumber}}</span></p>
@@ -333,7 +347,7 @@
                 <ul class="collapsible" data-collapsible="accordion">
                     <li>
                         <div class="collapsible-header"><i class="mdi-av-equalizer"></i>Stats</div>
-                        <div class="collapsible-body">
+                        <div class="collapsible-body list">
                             <p> Games: <span>{{FriendStats.get('Games')}}</span></p>
                             <p> Minutes: <span>{{FriendStats.get('Minutes')}}</span></p>
                             <p> Goals: <span>{{FriendStats.get('Goals')}}</span></p>
@@ -367,7 +381,7 @@
                 <ul class="collapsible" data-collapsible="accordion">
                     <li>
                         <div class="collapsible-header"><i class="mdi-av-equalizer"></i>Stats</div>
-                        <div class="collapsible-body">
+                        <div class="collapsible-body list">
                             <p> Games: <span>{{userStats.get('Games')}}</span></p>
                             <p> Minutes: <span>{{userStats.get('Minutes')}}</span></p>
                             <p> Goals: <span>{{userStats.get('Goals')}}</span></p>
@@ -383,7 +397,7 @@
                 <ul class="collapsible" data-collapsible="accordion">
                     <li>
                         <div class="collapsible-header"><i class="mdi-av-equalizer"></i>Advanced Stats</div>
-                        <div class="collapsible-body">
+                        <div class="collapsible-body list">
                             <p> Goals per game: <span>{{userAdvancedStats.goalsPerGame}}</span></p>
                             <p> Minutes per game: <span>{{userAdvancedStats.minutesPerGame}}</span></p>
                             <p> Assists per game: <span>{{userAdvancedStats.assistsPerGame}}</span></p>
@@ -597,7 +611,7 @@
             </div>
         </form>
         <div class="row">
-            <div class="center-text col s12">
+            <div class="center-text col s12" align="center">
                 <button data-target="modal3" class=" btn modal-trigger waves-effect waves-light btn light-blue lighten-2 " ng-click="createLineGraph()"> Create </button>
                 <button class="waves-effect waves-light btn light-blue lighten-2 " id="lineBack"> Back </button>
             </div>

@@ -148,6 +148,7 @@ nav ul a{
 .profilePic{
 	max-width: 60%;
 	height: auto;
+	border: 5px solid #4fc3f7;
 }
 .padding-top{
 	padding-top: 15px;
@@ -224,6 +225,14 @@ p{
 }
 #friendProfile{
 	display: none;
+}
+#offlineButton{
+	font-size: 0.5em;
+	color: #EEE;
+	text-decoration: underline;
+}
+.list p {
+	padding: 5px;
 }
 @font-face {
     font-family: 'alegreya_sansregular';

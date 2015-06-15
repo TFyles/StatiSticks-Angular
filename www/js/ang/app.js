@@ -113,6 +113,24 @@ function MainCtrl($scope, $timeout, $location, ParseService){
     ParseService.userSearch($scope.searchName ,function(results){
       $scope.$apply(function(){
         $scope.users = results;
+
+        if ($scope.users.length == 0){
+          $('#searchResults').html("<p align='center'>Your search returned 0 results </p>");
+        }
+
+      })
+    });
+  }
+
+  $scope.clubSearch = function(){
+    ParseService.clubSearch($scope.searchName ,function(results){
+      $scope.$apply(function(){
+        $scope.users = results;
+
+        if ($scope.users.length == 0){
+          $('#searchResults').html("<p align='center'>Your search returned 0 results </p>");
+        }
+
       })
     });
   }
@@ -369,6 +387,7 @@ function MainCtrl($scope, $timeout, $location, ParseService){
     $scope.FriendClub;
     $scope.FriendNumber;
     $scope.ImFollowing;
+    $scope.MyFollowers;
     $scope.FollowingAmount;
 }
 MainCtrl.$inject = ['$scope', '$timeout', '$location', 'ParseService']
