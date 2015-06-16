@@ -161,6 +161,7 @@ if ((min == 0) && ((sec == 10) || (sec == 5) || (sec == 4) || (sec == 3) || (sec
 if ((sec == 0) && (min == 0)) {
 	resetIt();
 	Materialize.toast("Timer Complete", 4000);
+	navigator.notification.beep(1);
 };
 
 }
