@@ -21,6 +21,10 @@ $(document).ready(function() {
         $('.button-collapse').sideNav('hide');
         $('#page-title').text("Profile");
     });
+    $('#toSignUp').click(function() {
+    	$('.page').css('display', 'none');
+    	$('#signUpPage').css('display', 'inline');
+    })
     $('#profileButton').click(function() {
         $('#profile').css('display', 'inline');
         $('#home').css('display', 'none');
@@ -161,7 +165,7 @@ if ( ((min == 2) && (sec == 0)) ||(min == 0) && ((sec == 10) || (sec == 5) || (s
 if ((sec == 0) && (min == 0)) {
 	resetIt();
 	Materialize.toast("Timer Complete", 4000);
-	navigator.notification.beep(1);
+	navigator.notification.beep(3);
 };
 
 }

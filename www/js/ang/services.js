@@ -799,6 +799,8 @@ angular.module('StatiSticksappServices', ['ngResource'])
                                 stat.save();
                                 Materialize.toast("Stats added", 4000);
                                 $('#AccStatsForm')[0].reset();
+                                $('#modal1').closeModal();
+
                             }
                         });
                     }
