@@ -132,6 +132,7 @@ $(document).ready(function() {
     var sec = 1;
 var min = 35;
 function stopwatch(text) {
+    cordova.plugins.backgroundMode.enable();
    sec--;
   if (sec == -1) {
    sec = 59;
@@ -166,6 +167,7 @@ if ((sec == 0) && (min == 0)) {
 	resetIt();
 	Materialize.toast("Timer Complete", 4000);
 	navigator.notification.beep(3);
+    cordova.plugins.backgroundMode.disable();
 };
 
 }
@@ -176,6 +178,7 @@ function resetIt() {
   if (document.clock.theButton.value == "Stop ") {
   document.clock.theButton.value = "Start"; }
   document.clock.stwa.value = ((min<=9) ? "0" + min : min) + " : " + sec;
+  cordova.plugins.backgroundMode.disable();
 }
 
 function setTime(){
@@ -195,6 +198,7 @@ function setTime(){
   	document.clock.stwa.value = ((min<=9) ? "0" + min : min) + " : " + sec;
   	$('#modal11').closeModal();
   	$('#SetClockForm')[0].reset();
+    cordova.plugins.backgroundMode.disable();
   	} else {
   		Materialize.toast("Invalid Time", 4000);
   	}

@@ -65,6 +65,7 @@
     <gap:plugin name="org.apache.cordova.vibration" />
     <gap:plugin name="de.appplant.cordova.plugin.hidden-statusbar-overlay" />
     <gap:plugin name="org.apache.cordova.dialogs"/>
+    <gap:plugin name="de.appplant.cordova.plugin.background-mode" />
 
     <!-- Third party plugins -->
     <!-- A list of available plugins are available at https://build.phonegap.com/plugins -->
