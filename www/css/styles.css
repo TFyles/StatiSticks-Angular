@@ -195,6 +195,9 @@ p{
 #writeReports{
 	display: none;
 }
+#StopwatchPage{
+	display: none;
+}
 #statButtons{
 	padding-top: 80%;
 }

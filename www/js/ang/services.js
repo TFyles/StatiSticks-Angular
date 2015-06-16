@@ -156,7 +156,7 @@ angular.module('StatiSticksappServices', ['ngResource'])
                             success: function(user) {
                                 user.remove("Following", sendName);
                                 user.save();
-                                Materialize.toast("unFollow " + sendName, 4000);
+                                Materialize.toast("unfollowed " + sendName, 4000);
                             }
                         });
 

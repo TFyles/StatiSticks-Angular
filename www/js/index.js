@@ -85,6 +85,11 @@ $(document).ready(function() {
         $('#writeReports').css('display', 'inline'); 
         $('#page-title').text("Report");
     });
+    $('#toStopwatch').click(function(){
+        $('.page').css('display', 'none');
+        $('#StopwatchPage').css('display', 'inline'); 
+        $('#page-title').text("Stopwatch");
+    });
     $('#closeLogIn').click(function() {
         $('#logInForm').css('display', 'none');
         $('#homeButtons').css('display', 'inline');
@@ -119,3 +124,52 @@ $(document).ready(function() {
         $('#step1').css('display', 'inline');
     });
 });
+
+    var sec = 15;
+var min = 0;
+function stopwatch(text) {
+   sec--;
+  if (sec == -1) {
+   sec = 59;
+   min = min - 1; }
+  else {
+   min = min; }
+
+if (sec<=9) { 
+	sec = "0" + sec; 
+}
+   document.clock.stwa.value = ((min<=9) ? "0" + min : min) + " : " + sec;
+
+  if (text == "Start") { document.clock.theButton.value = "Stop "; }
+  if (text == "Stop ") { document.clock.theButton.value = "Start"; }
+
+  if (document.clock.theButton.value == "Start") {
+   window.clearTimeout(SD);
+   sec=sec-1;
+   return true; }
+SD=window.setTimeout("stopwatch();", 1000);
+
+
+
+
+if ((min == 0) && ((sec == 10) || (sec == 5) || (sec == 4) || (sec == 3) || (sec == 2) || (sec == 1))) {
+	navigator.notification.vibrate(1000);
+};
+
+
+
+if ((sec == 0) && (min == 0)) {
+	resetIt();
+	Materialize.toast("Timer Complete", 4000);
+};
+
+}
+
+function resetIt() {
+  sec = 15;
+  min = 0;
+  if (document.clock.theButton.value == "Stop ") {
+  document.clock.theButton.value = "Start"; }
+  window.clearTimeout(SD);
+}
+
