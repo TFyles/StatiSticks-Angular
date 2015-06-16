@@ -733,18 +733,54 @@
     <div class="page" id="StopwatchPage" data-role="page">
     	<div class="row">
     		<div class="col s12">
-    			<p>Stopwatch</p>
-    		</div>
-    	</div>
-    	<div class="row">
-    		<div class="col s12">
     			<form name="clock">
-				<input type="text" size="12" name="stwa" /><br />
-				<input type="button" name="theButton" onClick="stopwatch(this.value);" value="Start" style="border: 1 solid #0000FF" />
-				<input type="button" value="Reset" onClick="resetIt();reset();" style="border: 1 solid #0000FF" />
+    			<div class="row" align="center">
+    				<div class="col s12">
+    					<input id="clockValue" disabled type="text" size="24" name="stwa" />
+    				</div>
+    			</div>
+    			<div class="row" align="center">
+    				<div class="col s12">
+						<button type="button" name="theButton" onClick="stopwatch(this.value);" value="Start" class="waves-effect waves-light btn light-blue lighten-2 ">Starts / Stop</button>
+					</div>
+				</div>
+				<div class="row" align="center">
+					<div class="col s12">
+						<button type="button" value="Reset" onClick="resetIt();reset();" class="waves-effect waves-light btn light-blue lighten-2 ">Reset</button>
+					</div>
+				</div>
+				<div class="row" align="center">
+					<div class="col s12">
+						<button  data-target="modal11" class=" btn modal-trigger waves-effect waves-light btn light-blue lighten-2 ">Set time</button>
+					</div>
+				</div>
 				</form>
     		</div>
     	</div>
+    	 <div id="modal11" class="modal">
+            <div class="modal-content">
+                <div class="row">
+                    <form id="SetClockForm">
+                    	<div class="row">
+	                        <div class="col s12">
+	                            <label for="Setminutes">Minutes:</label>
+	                            <input type="Number" name="Setminutes" id="Setminutes"/>
+	                        </div>
+	                    </div>
+	                    <div class="row">
+	                        <div class="col s12">
+	                            <label for="seconds">Seconds:</label>
+	                            <input type="Number" name="seconds" id="seconds"/>
+	                        </div>
+	                    </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" onClick="setTime()" class=" waves-effect waves-light btn  btn-flat">Set</a>
+                <a href="#!" class=" modal-action modal-close waves-effect waves-light btn btn-flat">Cancel</a>
+            </div>
+        </div>
     </div>
 
     <div class="page" id="offline" data-role="page">

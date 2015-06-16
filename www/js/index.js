@@ -125,8 +125,8 @@ $(document).ready(function() {
     });
 });
 
-    var sec = 15;
-var min = 0;
+    var sec = 1;
+var min = 35;
 function stopwatch(text) {
    sec--;
   if (sec == -1) {
@@ -145,14 +145,14 @@ if (sec<=9) {
 
   if (document.clock.theButton.value == "Start") {
    window.clearTimeout(SD);
-   sec=sec-1;
+   sec=sec;
    return true; }
 SD=window.setTimeout("stopwatch();", 1000);
 
 
 
 
-if ((min == 0) && ((sec == 10) || (sec == 5) || (sec == 4) || (sec == 3) || (sec == 2) || (sec == 1))) {
+if ( ((min == 2) && (sec == 0)) ||(min == 0) && ((sec == 10) || (sec == 5) || (sec == 4) || (sec == 3) || (sec == 2) || (sec == 1))) {
 	navigator.notification.vibrate(1000);
 };
 
@@ -167,10 +167,29 @@ if ((sec == 0) && (min == 0)) {
 }
 
 function resetIt() {
-  sec = 15;
-  min = 0;
+  sec = 1;
+  min =35;
   if (document.clock.theButton.value == "Stop ") {
   document.clock.theButton.value = "Start"; }
-  window.clearTimeout(SD);
+  document.clock.stwa.value = ((min<=9) ? "0" + min : min) + " : " + sec;
+}
+
+function setTime(){
+
+	console.log("Performed");
+	var Setminutes = $('#Setminutes').val();
+	var setSec = $('#seconds').val();
+
+	if ((Setminutes <= 35) && (Setminutes >= 0) && (setSec < 60) && (setSec >= 0)){
+	sec = setSec++;
+	min = Setminutes;
+	if (document.clock.theButton.value == "Stop ") {
+  	document.clock.theButton.value = "Start"; }
+  	document.clock.stwa.value = ((min<=9) ? "0" + min : min) + " : " + sec;
+  	$('#modal11').closeModal();
+  	$('#SetClockForm')[0].reset();
+  	} else {
+  		Materialize.toast("Not a valid value", 2000);
+  	}
 }
 

@@ -237,6 +237,14 @@ p{
 .list p {
 	padding: 5px;
 }
+#clockValue{
+	font-size: 5em;
+	font-weight: bold;
+	color: #000;
+	text-align: center;
+	height: 200px;
+
+}
 @font-face {
     font-family: 'alegreya_sansregular';
     src: url('font/alegreyasans-regular-webfont.eot');
