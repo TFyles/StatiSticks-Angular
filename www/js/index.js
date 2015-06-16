@@ -183,8 +183,11 @@ function setTime(){
 	console.log("Performed");
 	var Setminutes = $('#Setminutes').val();
 	var setSec = $('#seconds').val();
+	console.log(Setminutes);
+	setSec = Number(setSec);
+	Setminutes = Number(Setminutes);
 
-	if ((Setminutes <= 35) && (Setminutes >= 0) && (setSec < 60) && (setSec >= 0)){
+	if ((Setminutes <= 35) && (Setminutes >= 0) && (setSec < 60) && (setSec >= 0) && (setSec !=NaN) && (Setminutes != NaN)){
 	sec = setSec++;
 	min = Setminutes;
 	if (document.clock.theButton.value == "Stop ") {
@@ -193,7 +196,8 @@ function setTime(){
   	$('#modal11').closeModal();
   	$('#SetClockForm')[0].reset();
   	} else {
-  		Materialize.toast("Not a valid value", 2000);
+  		Materialize.toast("Invalid Time", 4000);
   	}
+
 }
 
