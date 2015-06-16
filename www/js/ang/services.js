@@ -37,7 +37,7 @@ angular.module('StatiSticksappServices', ['ngResource'])
                         $('#modal1').closeModal();
                         $('#logInForm')[0].reset();
                         navigator.notification.vibrate(1000);
-                        Materialize.toast("Welcome" + user.get('username'), 4000);
+                        Materialize.toast("Welcome " + user.get('username'), 4000);
 
 
                     },
