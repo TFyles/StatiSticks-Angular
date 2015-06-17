@@ -47,13 +47,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 #signUpPage{
 	display: none;
-	background-color: #FDFDF0;
+	background-color: #FEFEFE;
 }
 #signUpPage .row{
-	background-color: #FDFDF0;
+	background-color: #FEFEFE;
 }
 #signUpPage form{
-	background-color: #FDFDF0;
+	background-color: #FEFEFE;
 }
 #graph{
 	display: none;
