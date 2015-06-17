@@ -49,7 +49,10 @@ h1, h2, h3, h4, h5, h6 {
 	display: none;
 	background-color: #FDFDF0;
 }
-#signUpPage{
+#signUpPage .row{
+	background-color: #FDFDF0;
+}
+#signUpPage form{
 	background-color: #FDFDF0;
 }
 #graph{
