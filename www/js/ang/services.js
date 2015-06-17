@@ -63,8 +63,8 @@ angular.module('StatiSticksappServices', ['ngResource'])
 
                 user.signUp(null, {
                     success: function(user) {
-                        $('#signUpForm').css('display', 'none');
-                        $('#homeButtons').css('display', 'inline');
+                        $('.page').css('display','none');
+                        $('#home').css('display', 'inline');
                         $('#signUpForm')[0].reset();
                         Materialize.toast("Thank you for signing up", 4000);
                     },
@@ -178,6 +178,10 @@ angular.module('StatiSticksappServices', ['ngResource'])
                         query2.find({
                             success: function(results) {
                                 callback(results);
+                                if(results.length == 0){
+                                    $('#notFollowing').text("You're currently not following any users");
+                                    $('#notFollowing').css('padding-top','10px');
+                                }
                             },
                             error: function(error) {
                                 alert("Error: " + error.message);

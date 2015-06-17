@@ -25,6 +25,10 @@ $(document).ready(function() {
     	$('.page').css('display', 'none');
     	$('#signUpPage').css('display', 'inline');
     })
+    $('#backStartup').click(function() {
+    	$('.page').css('display','none');
+    	$('#home').css('display', 'inline');
+    })
     $('#profileButton').click(function() {
         $('#profile').css('display', 'inline');
         $('#home').css('display', 'none');

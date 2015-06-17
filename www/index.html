@@ -51,7 +51,7 @@
             <div class="row">
                 <div class="center-text col s12">
                     <button data-target="modal1" class=" btn modal-trigger waves-effect waves-light btn orange darken-4 "> Log In </button>
-                    <button data-target="modal2" class=" btn modal-trigger waves-effect waves-light btn orange darken-4 "> Sign Up </button>
+                    <button id="toSignUp" class=" waves-effect waves-light btn orange darken-4 "> Sign Up </button>
                 </div>
             </div>
             <div class="row">
@@ -91,14 +91,12 @@
                 </div>
             </div>
         </div>
-        <div id="modal2" class="modal">
-            <div class="modal-content">
-                <div class="row">
-                    <div class="input-field col s12" align="center">
-                        <h5>Sign up</h5>
-                    </div>
-                </div>
-                <form id="signUpForm">
+    </div>
+
+
+    <div class="page" data-role="page" id="signUpPage">
+    	<div class="row">
+    		<form id="signUpForm">
                     <div class="row">
                         <div class="input-field col s12">
                             <label for="signUpName">Username:</label>
@@ -146,15 +144,19 @@
                         </div>
                     </div>
                 </form>
-            </div>
-            <div class="center-text col s12">
-                <div class="modal-buttons" align="center">
-                    <a href="#!" id="signUpSend" class="modal-action modal-close left-padding waves-effect waves-light btn light-blue lighten-2" ng-click="signUp()">Sign Up</a>
-                    <a href="#!" class="modal-action modal-close left-padding waves-light btn light-blue lighten-2 ">Close</a>
+    	</div>
+    	<div class="row">
+    		<div class="center-text col s12">
+    			<div align="center">
+                   	<a href="#!" id="signUpSend" class="waves-effect waves-light btn orange darken-4" ng-click="signUp()">Sign Up</a>
+                   	<a href="#!" id="backStartup" class="waves-light btn orange darken-4 ">Close</a>
                 </div>
-            </div>
-        </div>
+    		</div>
+    	</div>
     </div>
+
+
+
     <div class="page" id="profile" data-role="page">
         <div class="row" id="profileFirst">
             <div class="center-text col s12">
@@ -180,6 +182,7 @@
                 <button class="waves-effect waves-light btn light-blue lighten-2 " id="cameraBack"> Cancel </button>
             </fieldset>
         </form>
+        <div id="profileData">
         <div class="row">
             <div class="center-text col s12">
                 <ul class="collapsible" data-collapsible="accordion">
@@ -233,6 +236,7 @@
                 </ul>
             </div>
         </div>
+        </div>
         <div class="row">
             <div class="col s12" align="center">
                 <button class="waves-effect waves-light btn light-blue lighten-2 " id="viewFollowing"> View Following </button>
@@ -250,6 +254,7 @@
     <div class="page" id="following" data-role="page">
         <div class="row">
             <div class="col s12">
+            	<div id="notFollowing"></div>
                 <ul class="collection">
                     <a href="#!" ng-click="viewUser()" class="collection-item" ng-repeat="user in ImFollowing">{{user.get("username")}}<span class="badge"><i class="mdi-hardware-keyboard-arrow-right"></i></span></a>
                 </ul>
@@ -311,7 +316,7 @@
             <div class="center-text col s12">
                 <ul class="collapsible" data-collapsible="accordion">
                     <li>
-                        <div class="collapsible-header"><i class="mdi-av-equalizer"></i>About</div>
+                        <div class="collapsible-header"><i class="mdi-social-group"></i>About</div>
                         <div class="collapsible-body list">
                             <p> Position: <span>{{FriendPosition}}</span></p>
                             <p> Club: <span>{{FriendClub}}</span></p>
@@ -325,7 +330,7 @@
             <div class="center-text col s12">
                 <ul class="collapsible" data-collapsible="accordion">
                     <li>
-                        <div class="collapsible-header"><i class="mdi-av-equalizer"></i>Graphs</div>
+                        <div class="collapsible-header"><i class="mdi-action-trending-up"></i>Graphs</div>
                         <div class="collapsible-body">
                             <div class="center-text col s12">
                                 <select class="browser-default" ng-model="FriendprofileGraph">
