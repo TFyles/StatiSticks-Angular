@@ -57,7 +57,7 @@ $(document).ready(function() {
         $('.page').css('display', 'none');
         $('#utilities').css('display', 'inline');
         $('.button-collapse').sideNav('hide');
-        $('#page-title').text("Utils");
+        $('#page-title').text("Utilities");
     });
     $('#graphNav').click(function() {
         $('.page').css('display', 'none');

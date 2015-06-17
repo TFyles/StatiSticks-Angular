@@ -179,7 +179,7 @@ angular.module('StatiSticksappServices', ['ngResource'])
                             success: function(results) {
                                 callback(results);
                                 if(results.length == 0){
-                                    $('#notFollowing').text("You're currently not following any users");
+                                    $('#notFollowing').html("<p>You're currently not following any users</p>");
                                     $('#notFollowing').css('padding-top','10px');
                                 }
                             },

@@ -168,7 +168,7 @@ p{
     width: 100%; 
     height: 100%; 
     background-color: #4fc3f7;
-    top: 50px;
+    top: 100px;
 }
 
 #page-title{
@@ -238,8 +238,8 @@ p{
 	display: none;
 }
 #offlineButton{
-	font-size: 0.5em;
-	color: #EEE;
+	font-size: 0.8em;
+	color: #999;
 	text-decoration: underline;
 }
 .list p {
